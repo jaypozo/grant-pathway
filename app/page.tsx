@@ -65,12 +65,16 @@ export default function Home() {
               <span className="text-sm font-medium">Trusted by 500+ Canadian Businesses</span>
             </div>
             
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
-              Unlock Your Business's
-              <div className="relative inline-block">
-                <span className="relative z-10 block mt-2">Grant Potential</span>
-                <div className="absolute -bottom-2 left-0 right-0 h-3 bg-primary/20 -skew-x-6 transform" />
+            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+              <div className="inline-block mr-3">
+                <span className="bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent relative">
+                  Unlock
+                  <div className="absolute -bottom-2 left-0 right-0 h-3 bg-primary/20 -skew-x-6 transform" />
+                </span>
               </div>
+              <span className="bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
+                Your Business's Grant Potential
+              </span>
             </h1>
 
             <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl">
