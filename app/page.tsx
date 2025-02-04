@@ -9,6 +9,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
+import Marquee from 'react-fast-marquee';
 
 export default function Home() {
   const testimonials = [
@@ -49,6 +50,54 @@ export default function Home() {
       question: 'What if I need help with the grant application?',
       answer: 'We offer optional grant writing and application support services through our network of experienced professionals for an additional fee.',
     },
+  ];
+
+  const businessTypes = [
+    {
+      image: "/images/businesses/cafe.jpg",
+      alt: "Cafe owner smiling at counter",
+      label: "Local Cafes"
+    },
+    {
+      image: "/images/businesses/startup.jpg",
+      alt: "Tech startup founder",
+      label: "Tech Startups"
+    },
+    {
+      image: "/images/businesses/retail.jpg",
+      alt: "Retail store owner",
+      label: "Retail Stores"
+    },
+    {
+      image: "/images/businesses/manufacturing.jpg",
+      alt: "Manufacturing business owner",
+      label: "Manufacturing"
+    },
+    {
+      image: "/images/businesses/spas.jpg",
+      alt: "Spa owner",
+      label: "Spas & Wellness"
+    },
+    {
+      image: "/images/businesses/restaurant.jpg",
+      alt: "Restaurant owner",
+      label: "Restaurants"
+    },
+    {
+      image: "/images/businesses/fitness.jpg",
+      alt: "Fitness studio owner",
+      label: "Fitness Studios"
+    },
+    {
+      image: "/images/businesses/fashion.jpg",
+      alt: "Boutique owner",
+      label: "Fashion Boutiques"
+    },
+    {
+      image: "/images/businesses/bakery.jpg",
+      alt: "Bakery owner",
+      label: "Bakeries"
+    }
   ];
 
   return (
@@ -106,6 +155,36 @@ export default function Home() {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* Business Owners Gallery */}
+      <section className="py-16 bg-background overflow-hidden">
+        <div className="max-w-6xl mx-auto px-4 mb-8">
+          <h2 className="text-2xl md:text-3xl text-center font-medium text-muted-foreground">
+            Join Thousands of Canadian Businesses We've Helped
+          </h2>
+        </div>
+        <Marquee
+          gradient={false}
+          speed={40}
+          pauseOnHover={false}
+          className="py-4"
+        >
+          <div className="flex gap-4">
+            {businessTypes.map((business, index) => (
+              <div key={index} className="relative aspect-[3/4] w-60 flex-none overflow-hidden rounded-2xl">
+                <img 
+                  src={business.image}
+                  alt={business.alt}
+                  className="object-cover w-full h-full hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                <p className="absolute bottom-4 left-4 text-white font-medium">{business.label}</p>
+              </div>
+            ))}
+            <div className=" flex-none" aria-hidden="true" />
+          </div>
+        </Marquee>
       </section>
 
       {/* How It Works */}
