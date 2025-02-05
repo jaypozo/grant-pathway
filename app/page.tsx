@@ -1070,8 +1070,7 @@ export default function Home() {
               </div>
               <div>
                 <h4 className="font-semibold mb-4">Contact</h4>
-                <p className="text-primary-foreground/80">contact@grantpathway.ca</p>
-                <p className="text-primary-foreground/80">1-800-GRANTS</p>
+                <p className="text-primary-foreground/80">hello@grantpathway.com</p>
               </div>
               <div>
                 <h4 className="font-semibold mb-4">Follow Us</h4>
