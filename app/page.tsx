@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
-import { ArrowRight, CheckCircle, Clock, FileText, Users, DollarSign, Sparkles, LightbulbIcon, Star } from 'lucide-react';
+import { ArrowRight, CheckCircle, Clock, FileText, Users, DollarSign, Sparkles, LightbulbIcon, Star, Lock } from 'lucide-react';
 import {
   Accordion,
   AccordionContent,
@@ -33,6 +33,13 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import Link from 'next/link';
 
 const formSchema = z.object({
   businessName: z.string().min(1, "Business name is required"),
@@ -368,24 +375,14 @@ const fundingOpportunities: FundingOpportunity[] = [
   }
 ];
  
-function DialogModalContent() {
-  const [starredOpportunities, setStarredOpportunities] = useState<Set<number>>(new Set())
+interface DialogModalContentProps {
+  setParentOpen: (open: boolean) => void;
+}
+
+function DialogModalContent({ setParentOpen }: DialogModalContentProps) {
+  const [showGetReportModal, setShowGetReportModal] = useState(false)
   const [activeCategory, setActiveCategory] = useState<string>("")
   const categoryRefs = useRef<Record<string, HTMLDivElement>>({})
-
-  const toggleStar = (index: number, event: ReactMouseEvent<HTMLButtonElement>) => {
-    event.preventDefault()
-    event.stopPropagation()
-    setStarredOpportunities((prev) => {
-      const newSet = new Set(prev)
-      if (newSet.has(index)) {
-        newSet.delete(index)
-      } else {
-        newSet.add(index)
-      }
-      return newSet
-    })
-  }
 
   const groupedOpportunities = fundingOpportunities.reduce(
     (acc, opportunity) => {
@@ -397,8 +394,6 @@ function DialogModalContent() {
     },
     {} as Record<string, FundingOpportunity[]>,
   )
-
-  const totalOpportunities = fundingOpportunities.length
 
   const scrollToCategory = (category: string) => {
     setActiveCategory(category)
@@ -421,7 +416,7 @@ function DialogModalContent() {
         <div className="max-w-6xl mx-auto px-8 py-8">
           <h1 className="text-4xl font-bold mb-2 text-gray-900">Funding Opportunities (Sample)</h1>
           <p className="text-xl text-gray-600 mb-8">
-            For Tao Day Spa (Steveston, BC) • {totalOpportunities} opportunities found
+            For Tao Day Spa (Steveston, BC) • {fundingOpportunities.length} opportunities found
           </p>
 
           <div className="sticky top-0 bg-gray-50 py-4 z-10">
@@ -468,17 +463,25 @@ function DialogModalContent() {
                               </p>
                             )}
                           </div>
-                          <button
-                            onClick={(e) => toggleStar(index, e)}
-                            className="text-gray-400 hover:text-yellow-400 transition-colors duration-300 shrink-0"
-                            aria-label={
-                              starredOpportunities.has(index) ? "Unstar this opportunity" : "Star this opportunity"
-                            }
-                          >
-                            <Star
-                              className={`w-5 h-5 ${starredOpportunities.has(index) ? "fill-yellow-400 text-yellow-400" : "fill-transparent"}`}
-                            />
-                          </button>
+                          {index > 0 && (
+                            <TooltipProvider>
+                              <Tooltip>
+                                <TooltipTrigger asChild>
+                                  <Button 
+                                    variant="ghost" 
+                                    size="icon" 
+                                    className="shrink-0 text-gray-400 hover:text-primary hover:bg-primary/10"
+                                    onClick={() => setShowGetReportModal(true)}
+                                  >
+                                    <Lock className="w-4 h-4" />
+                                  </Button>
+                                </TooltipTrigger>
+                                <TooltipContent side="left" className="max-w-[200px]">
+                                  <p>Get your personalized report to unlock all funding opportunities</p>
+                                </TooltipContent>
+                              </Tooltip>
+                            </TooltipProvider>
+                          )}
                         </div>
                       </CardHeader>
                       <CardContent className="p-4">
@@ -486,20 +489,6 @@ function DialogModalContent() {
                           {opportunity.description}
                         </p>
                         <div className="grid gap-4">
-                          <div className="grid grid-cols-2 gap-4">
-                            {opportunity.max_amount && (
-                              <div className="space-y-1">
-                                <p className="text-xs font-medium text-gray-500">Maximum Amount</p>
-                                <p className="text-sm font-semibold text-gray-900">{opportunity.max_amount}</p>
-                              </div>
-                            )}
-                            {opportunity.deadline && (
-                              <div className="space-y-1">
-                                <p className="text-xs font-medium text-gray-500">Deadline</p>
-                                <p className="text-sm font-semibold text-gray-900">{opportunity.deadline}</p>
-                              </div>
-                            )}
-                          </div>
                           <div className="space-y-1">
                             <p className="text-xs font-medium text-gray-500">Type</p>
                             <div className="flex flex-wrap gap-2">
@@ -508,16 +497,45 @@ function DialogModalContent() {
                               </span>
                             </div>
                           </div>
+                          {opportunity.max_amount && (
+                            <div className="space-y-1">
+                              <p className="text-xs font-medium text-gray-500">Maximum Amount</p>
+                              <p className={`text-sm font-semibold text-emerald-600 ${index > 0 ? "blur-sm select-none" : ""}`}>
+                                {opportunity.max_amount}
+                              </p>
+                            </div>
+                          )}
+                          {opportunity.deadline && (
+                            <div className="space-y-1">
+                              <p className="text-xs font-medium text-gray-500">Deadline</p>
+                              <p className={`text-sm text-gray-900 ${index > 0 ? "blur-sm select-none" : ""}`}>
+                                {opportunity.deadline}
+                              </p>
+                            </div>
+                          )}
                           {opportunity.notes && (
                             <div className="space-y-1">
                               <p className="text-xs font-medium text-gray-500">Additional Notes</p>
-                              <p className="text-sm text-gray-600">{opportunity.notes}</p>
+                              <p className={`text-sm text-gray-600 ${index > 0 ? "blur-sm select-none" : ""}`}>
+                                {opportunity.notes}
+                              </p>
                             </div>
                           )}
                         </div>
-                        {index === 0 && (
+                        {index === 0 ? (
                           <div className="mt-6 pt-6 border-t border-gray-100 text-sm text-gray-500 italic">
                             Full details available in your personalized report
+                          </div>
+                        ) : (
+                          <div className="mt-6 pt-6 border-t border-gray-100">
+                            <Button 
+                              className="w-full" 
+                              variant="outline"
+                              onClick={() => setShowGetReportModal(true)}
+                            >
+                              Unlock Full Details
+                              <Lock className="w-4 h-4 ml-2" />
+                            </Button>
                           </div>
                         )}
                       </CardContent>
@@ -529,6 +547,65 @@ function DialogModalContent() {
           </div>
         </div>
       </div>
+
+      {/* Get Report Modal */}
+      <Dialog open={showGetReportModal} onOpenChange={setShowGetReportModal}>
+        <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>Get Your Personalized Grant Report</DialogTitle>
+            <DialogDescription>
+              Unlock all funding opportunities and get a customized report for your business within 48 hours.
+            </DialogDescription>
+          </DialogHeader>
+          
+          <div className="py-6">
+            <div className="space-y-4 mb-8">
+              <div className="flex items-center gap-3 text-sm">
+                <CheckCircle className="text-primary w-5 h-5 shrink-0" />
+                <span>Access to all funding opportunities matching your business</span>
+              </div>
+              <div className="flex items-center gap-3 text-sm">
+                <CheckCircle className="text-primary w-5 h-5 shrink-0" />
+                <span>Detailed eligibility criteria and application requirements</span>
+              </div>
+              <div className="flex items-center gap-3 text-sm">
+                <CheckCircle className="text-primary w-5 h-5 shrink-0" />
+                <span>Direct application links and deadlines</span>
+              </div>
+              <div className="flex items-center gap-3 text-sm">
+                <CheckCircle className="text-primary w-5 h-5 shrink-0" />
+                <span>Expert recommendations and priority opportunities</span>
+              </div>
+            </div>
+
+            <div className="flex justify-between items-center p-4 bg-primary/5 rounded-lg mb-4">
+              <div>
+                <p className="font-semibold">One-time Report Fee</p>
+                <p className="text-sm text-muted-foreground">No recurring charges</p>
+              </div>
+              <div className="text-right">
+                <p className="text-2xl font-bold">$100 <span className="text-sm font-normal text-muted-foreground">CAD</span></p>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-center gap-2 p-3 bg-gray-50 rounded-lg mb-8 text-sm text-muted-foreground">
+              <img src="/images/stripe.svg" alt="Stripe" className="h-5" />
+              <span>Your purchase is protected by Stripe secure payment</span>
+            </div>
+
+            <Link href="/business-details" className="w-full">
+              <Button 
+                className="w-full" 
+                size="lg"
+                onClick={() => setShowGetReportModal(false)}
+              >
+                Continue to Business Details
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </Button>
+            </Link>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }
@@ -665,9 +742,9 @@ export default function Home() {
             >
               Pricing
             </a>
-            <Button variant="outline" onClick={() => setOpen(true)}>
-              Get Started
-            </Button>
+            <Link href="/business-details">
+              <Button variant="outline">Get Started</Button>
+            </Link>
           </nav>
         </div>
       </header>
@@ -703,310 +780,11 @@ export default function Home() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 items-center justify-center mb-12">
-                <Dialog open={open} onOpenChange={setOpen}>
-                  <DialogTrigger asChild>
-                    <Button size="lg" className="text-lg px-8 h-14 rounded-full">
-                      Get Your Grant Report <ArrowRight className="ml-2" />
-                    </Button>
-                  </DialogTrigger>
-                  <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto">
-                    <DialogHeader>
-                      <DialogTitle>Tell Us About Your Business</DialogTitle>
-                      <DialogDescription>
-                        Help us find the best grants for your business by providing some details.
-                      </DialogDescription>
-                    </DialogHeader>
-                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 py-4">
-                      {/* Business Name and Location */}
-                      <div className="space-y-4">
-                        <h3 className="font-semibold">Business Details</h3>
-                        <div className="grid gap-4">
-                          <div className="grid gap-2">
-                            <Label htmlFor="businessName">Business Name</Label>
-                            <Input 
-                              {...form.register("businessName")}
-                              id="businessName" 
-                              placeholder="Enter your business name" 
-                            />
-                            {form.formState.errors.businessName && (
-                              <p className="text-sm text-red-500">{form.formState.errors.businessName.message}</p>
-                            )}
-                          </div>
-                          <div className="grid gap-2">
-                            <Label htmlFor="email">Email Address</Label>
-                            <Input 
-                              {...form.register("email")}
-                              id="email" 
-                              type="email"
-                              placeholder="Enter your email address" 
-                            />
-                            {form.formState.errors.email && (
-                              <p className="text-sm text-red-500">{form.formState.errors.email.message}</p>
-                            )}
-                          </div>
-                          <div className="grid gap-2">
-                            <Label htmlFor="city">City</Label>
-                            <Input 
-                              {...form.register("city")}
-                              id="city" 
-                              placeholder="City" 
-                            />
-                            {form.formState.errors.city && (
-                              <p className="text-sm text-red-500">{form.formState.errors.city.message}</p>
-                            )}
-                          </div>
-                          <div className="grid gap-2">
-                            <Label htmlFor="province">Province/Territory</Label>
-                            <Select onValueChange={(value) => form.setValue("province", value)}>
-                              <SelectTrigger>
-                                <SelectValue placeholder="Select province/territory" />
-                              </SelectTrigger>
-                              <SelectContent>
-                                <SelectItem value="AB">Alberta</SelectItem>
-                                <SelectItem value="BC">British Columbia</SelectItem>
-                                <SelectItem value="MB">Manitoba</SelectItem>
-                                <SelectItem value="NB">New Brunswick</SelectItem>
-                                <SelectItem value="NL">Newfoundland and Labrador</SelectItem>
-                                <SelectItem value="NS">Nova Scotia</SelectItem>
-                                <SelectItem value="NT">Northwest Territories</SelectItem>
-                                <SelectItem value="NU">Nunavut</SelectItem>
-                                <SelectItem value="ON">Ontario</SelectItem>
-                                <SelectItem value="PE">Prince Edward Island</SelectItem>
-                                <SelectItem value="QC">Quebec</SelectItem>
-                                <SelectItem value="SK">Saskatchewan</SelectItem>
-                                <SelectItem value="YT">Yukon</SelectItem>
-                              </SelectContent>
-                            </Select>
-                            {form.formState.errors.province && (
-                              <p className="text-sm text-red-500">{form.formState.errors.province.message}</p>
-                            )}
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Business Type and Industry */}
-                      <div className="space-y-4">
-                        <h3 className="font-semibold">Business Type & Industry</h3>
-                        <div className="grid gap-4">
-                          <div className="space-y-2">
-                            <Label>Business Type</Label>
-                            <RadioGroup 
-                              defaultValue="for-profit" 
-                              className="flex gap-4"
-                              onValueChange={(value) => form.setValue("businessType", value as "for-profit" | "non-profit")}
-                            >
-                              <div className="flex items-center space-x-2">
-                                <RadioGroupItem value="for-profit" id="for-profit" />
-                                <Label htmlFor="for-profit">For-Profit</Label>
-                              </div>
-                              <div className="flex items-center space-x-2">
-                                <RadioGroupItem value="non-profit" id="non-profit" />
-                                <Label htmlFor="non-profit">Non-Profit</Label>
-                              </div>
-                            </RadioGroup>
-                            {form.formState.errors.businessType && (
-                              <p className="text-sm text-red-500">{form.formState.errors.businessType.message}</p>
-                            )}
-                          </div>
-                          <div className="grid gap-2">
-                            <Label htmlFor="industry">Industry</Label>
-                            <Select 
-                              onValueChange={(value) => {
-                                form.setValue("industry", value);
-                                setShowOtherIndustry(value === "other");
-                                if (value !== "other") {
-                                  form.setValue("otherIndustry", "");
-                                }
-                              }}
-                            >
-                              <SelectTrigger>
-                                <SelectValue placeholder="Select your industry" />
-                              </SelectTrigger>
-                              <SelectContent>
-                                <SelectItem value="wellness">Health & Wellness</SelectItem>
-                                <SelectItem value="beauty">Beauty & Personal Care</SelectItem>
-                                <SelectItem value="tech">Technology</SelectItem>
-                                <SelectItem value="retail">Retail</SelectItem>
-                                <SelectItem value="food">Food & Beverage</SelectItem>
-                                <SelectItem value="manufacturing">Manufacturing</SelectItem>
-                                <SelectItem value="professional">Professional Services</SelectItem>
-                                <SelectItem value="arts">Arts & Entertainment</SelectItem>
-                                <SelectItem value="education">Education</SelectItem>
-                                <SelectItem value="other">Other</SelectItem>
-                              </SelectContent>
-                            </Select>
-                            {showOtherIndustry && (
-                              <div className="mt-2">
-                                <Input 
-                                  {...form.register("otherIndustry")}
-                                  placeholder="Please specify your industry"
-                                />
-                                {form.formState.errors.otherIndustry && (
-                                  <p className="text-sm text-red-500">{form.formState.errors.otherIndustry.message}</p>
-                                )}
-                              </div>
-                            )}
-                            {form.formState.errors.industry && (
-                              <p className="text-sm text-red-500">{form.formState.errors.industry.message}</p>
-                            )}
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Business Stage */}
-                      <div className="space-y-4">
-                        <h3 className="font-semibold">Business Stage</h3>
-                        <div className="grid gap-4">
-                          <div className="grid gap-2">
-                            <Label>Current Stage</Label>
-                            <Select>
-                              <SelectTrigger>
-                                <SelectValue placeholder="Select business stage" />
-                              </SelectTrigger>
-                              <SelectContent>
-                                <SelectItem value="startup">Startup</SelectItem>
-                                <SelectItem value="established">Established</SelectItem>
-                                <SelectItem value="expanding">Expanding</SelectItem>
-                                <SelectItem value="pivoting">Pivoting/Transforming</SelectItem>
-                              </SelectContent>
-                            </Select>
-                          </div>
-                          <div className="grid gap-2">
-                            <Label htmlFor="startDate">Business Start Date</Label>
-                            <Input type="date" id="startDate" />
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Owner Demographics */}
-                      <div className="space-y-4">
-                        <h3 className="font-semibold">Owner Demographics</h3>
-                        <div className="grid gap-4">
-                          <div className="grid gap-2">
-                            <Label>Gender</Label>
-                            <Select>
-                              <SelectTrigger>
-                                <SelectValue placeholder="Select gender" />
-                              </SelectTrigger>
-                              <SelectContent>
-                                <SelectItem value="female">Female</SelectItem>
-                                <SelectItem value="male">Male</SelectItem>
-                                <SelectItem value="non-binary">Non-binary</SelectItem>
-                                <SelectItem value="other">Other</SelectItem>
-                                <SelectItem value="prefer-not">Prefer not to say</SelectItem>
-                              </SelectContent>
-                            </Select>
-                          </div>
-                          <div className="grid gap-2">
-                            <Label>Age Range</Label>
-                            <Select>
-                              <SelectTrigger>
-                                <SelectValue placeholder="Select age range" />
-                              </SelectTrigger>
-                              <SelectContent>
-                                <SelectItem value="18-24">18-24</SelectItem>
-                                <SelectItem value="25-34">25-34</SelectItem>
-                                <SelectItem value="35-44">35-44</SelectItem>
-                                <SelectItem value="45-54">45-54</SelectItem>
-                                <SelectItem value="55-64">55-64</SelectItem>
-                                <SelectItem value="65+">65+</SelectItem>
-                                <SelectItem value="prefer-not">Prefer not to say</SelectItem>
-                              </SelectContent>
-                            </Select>
-                          </div>
-                          <div className="space-y-2">
-                            <Label>Underrepresented Groups (Optional)</Label>
-                            <div className="grid gap-2">
-                              <div className="flex items-center space-x-2">
-                                <input 
-                                  type="checkbox" 
-                                  id="indigenous" 
-                                  className="rounded border-gray-300"
-                                  {...form.register("underrepresentedGroups")}
-                                  value="indigenous"
-                                />
-                                <Label htmlFor="indigenous">Indigenous</Label>
-                              </div>
-                              <div className="flex items-center space-x-2">
-                                <input 
-                                  type="checkbox" 
-                                  id="visible-minority" 
-                                  className="rounded border-gray-300"
-                                  {...form.register("underrepresentedGroups")}
-                                  value="visible-minority"
-                                />
-                                <Label htmlFor="visible-minority">Visible Minority</Label>
-                              </div>
-                              <div className="flex items-center space-x-2">
-                                <input 
-                                  type="checkbox" 
-                                  id="newcomer" 
-                                  className="rounded border-gray-300"
-                                  {...form.register("underrepresentedGroups")}
-                                  value="newcomer"
-                                />
-                                <Label htmlFor="newcomer">Newcomer to Canada</Label>
-                              </div>
-                              <div className="flex items-center space-x-2">
-                                <input 
-                                  type="checkbox" 
-                                  id="disability" 
-                                  className="rounded border-gray-300"
-                                  {...form.register("underrepresentedGroups")}
-                                  value="disability"
-                                />
-                                <Label htmlFor="disability">Person with Disability</Label>
-                              </div>
-                              <div className="flex items-center space-x-2">
-                                <input 
-                                  type="checkbox" 
-                                  id="veteran" 
-                                  className="rounded border-gray-300"
-                                  {...form.register("underrepresentedGroups")}
-                                  value="veteran"
-                                />
-                                <Label htmlFor="veteran">Veteran</Label>
-                              </div>
-                              <div className="flex items-center space-x-2">
-                                <input 
-                                  type="checkbox" 
-                                  id="other" 
-                                  className="rounded border-gray-300"
-                                  checked={showOtherField}
-                                  onChange={(e) => {
-                                    setShowOtherField(e.target.checked);
-                                    if (!e.target.checked) {
-                                      form.setValue("otherUnderrepresentedGroup", "");
-                                    }
-                                  }}
-                                />
-                                <Label htmlFor="other">Other</Label>
-                              </div>
-                              {showOtherField && (
-                                <div className="ml-6">
-                                  <Input 
-                                    {...form.register("otherUnderrepresentedGroup")}
-                                    placeholder="Please specify"
-                                    className="mt-2"
-                                  />
-                                </div>
-                              )}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="flex justify-end gap-4">
-                        <Button variant="outline" type="button" onClick={() => setOpen(false)}>
-                          Cancel
-                        </Button>
-                        <Button type="submit" disabled={form.formState.isSubmitting}>
-                          {form.formState.isSubmitting ? "Processing..." : "Continue to Payment"}
-                        </Button>
-                      </div>
-                    </form>
-                  </DialogContent>
-                </Dialog>
+                <Link href="/business-details">
+                  <Button size="lg" className="text-lg px-8 h-14 rounded-full">
+                    Get Your Grant Report <ArrowRight className="ml-2" />
+                  </Button>
+                </Link>
                 <p className="flex items-center gap-2 text-muted-foreground">
                   <LightbulbIcon className="w-5 h-5 text-primary" />
                   <span>One-time fee of $100 CAD</span>
@@ -1176,7 +954,7 @@ export default function Home() {
                     </Button>
                   </DialogTrigger>
                   <DialogContent className="max-w-6xl h-[95vh] p-0 bg-gray-50">
-                    <DialogModalContent />
+                    <DialogModalContent setParentOpen={setOpen} />
                   </DialogContent>
                 </Dialog>
               </div>
@@ -1270,13 +1048,11 @@ export default function Home() {
                   ))}
                 </div>
 
-                <Button 
-                  className="w-full" 
-                  size="lg"
-                  onClick={() => setOpen(true)}
-                >
-                  Get Your Report
-                </Button>
+                <Link href="/business-details">
+                  <Button className="w-full" size="lg">
+                    Get Your Report
+                  </Button>
+                </Link>
               </Card>
             </div>
           </div>
