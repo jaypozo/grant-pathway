@@ -310,7 +310,7 @@ function DialogModalContent() {
     setActiveCategory(category)
     const element = categoryRefs.current[category]
     if (element) {
-      const topOffset = element.offsetTop - 120 // Add more offset to show more of the cards
+      const topOffset = element.offsetTop - 120
       const scrollContainer = element.closest('.overflow-y-auto')
       if (scrollContainer) {
         scrollContainer.scrollTo({
@@ -328,24 +328,39 @@ function DialogModalContent() {
           <h1 className="text-4xl font-bold mb-2 text-gray-900">Funding Opportunities (Sample)</h1>
           <p className="text-xl text-gray-600 mb-8">For Tao Day Spa (Steveston, BC)</p>
 
-          <nav className="mb-8 sticky top-0 bg-gray-50 py-4 z-10">
-            <ul className="flex space-x-4 overflow-x-auto pb-2">
-              {Object.keys(groupedOpportunities).map((category) => (
-                <li key={category}>
-                  <button
+          <div className="sticky top-0 bg-gray-50 py-4 z-10 flex items-center gap-4">
+            <Select
+              value={activeCategory}
+              onValueChange={(value) => scrollToCategory(value)}
+            >
+              <SelectTrigger className="w-[300px]">
+                <SelectValue placeholder="Select a category" />
+              </SelectTrigger>
+              <SelectContent>
+                {Object.keys(groupedOpportunities).map((category) => (
+                  <SelectItem key={category} value={category}>
+                    {category.charAt(0).toUpperCase() + category.slice(1)} ({groupedOpportunities[category].length})
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+
+            <div className="flex-1 overflow-x-auto">
+              <div className="flex gap-2">
+                {Object.keys(groupedOpportunities).map((category) => (
+                  <Button
+                    key={category}
+                    variant={activeCategory === category ? "default" : "ghost"}
+                    size="sm"
                     onClick={() => scrollToCategory(category)}
-                    className={`px-4 py-2 text-sm font-medium transition-colors ${
-                      activeCategory === category 
-                        ? "text-[#57ad0b]" 
-                        : "text-gray-600 hover:text-gray-900"
-                    } focus:outline-none`}
+                    className="whitespace-nowrap"
                   >
                     {category.charAt(0).toUpperCase() + category.slice(1)}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </nav>
+                  </Button>
+                ))}
+              </div>
+            </div>
+          </div>
 
           <div className="space-y-12 pl-4">
             {Object.entries(groupedOpportunities).map(([category, opportunities]) => (
@@ -356,14 +371,16 @@ function DialogModalContent() {
                 }}
               >
                 <h2 className="text-2xl font-semibold mb-6 text-gray-800 border-b border-gray-200 pb-2">
-                  {category.charAt(0).toUpperCase() + category.slice(1)}
+                  {category.charAt(0).toUpperCase() + category.slice(1)} ({opportunities.length})
                 </h2>
                 <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                   {opportunities.map((opportunity, index) => (
                     <Card key={index} className="bg-white shadow-sm hover:shadow-md transition-shadow duration-300">
                       <CardHeader className="bg-gray-50 border-b">
                         <div className="flex justify-between items-start">
-                          <CardTitle className="text-lg font-semibold text-gray-900">{opportunity.title}</CardTitle>
+                          <CardTitle className={`text-lg font-semibold text-gray-900 ${index > 0 ? "blur-sm select-none" : ""}`}>
+                            {opportunity.title}
+                          </CardTitle>
                           <button
                             onClick={(e) => toggleStar(index, e)}
                             className="text-gray-400 hover:text-yellow-400 transition-colors duration-300"
@@ -378,7 +395,9 @@ function DialogModalContent() {
                         </div>
                       </CardHeader>
                       <CardContent className="p-4">
-                        <p className="text-sm text-gray-600 mb-4">{opportunity.description}</p>
+                        <p className={`text-sm text-gray-600 mb-4 ${index > 0 ? "blur-sm select-none" : ""}`}>
+                          {opportunity.description}
+                        </p>
                         <div className="space-y-2 text-xs text-gray-500">
                           <p>
                             <span className="font-semibold">Type:</span> {opportunity.type}
@@ -394,14 +413,11 @@ function DialogModalContent() {
                             </p>
                           )}
                         </div>
-                        <a
-                          href={opportunity.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="mt-4 inline-block text-sm font-medium text-[#57ad0b] hover:underline"
-                        >
-                          Learn More
-                        </a>
+                        {index === 0 && (
+                          <div className="mt-4 text-sm text-gray-500 italic">
+                            Full details available in your personalized report
+                          </div>
+                        )}
                       </CardContent>
                     </Card>
                   ))}
