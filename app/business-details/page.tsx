@@ -48,11 +48,29 @@ export default function BusinessDetailsPage() {
     },
   });
 
-  const onSubmit = (data: z.infer<typeof formSchema>) => {
-    console.log(data);
-    // Here you would typically send the data to your backend
-    // After successful form submission, redirect to Stripe payment page
-    window.location.href = "https://buy.stripe.com/28ocQC9jxfKX4CYdQQ";
+  const onSubmit = async (data: z.infer<typeof formSchema>) => {
+    try {
+      const response = await fetch('/api/business-details', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to save business details');
+      }
+
+      // Redirect to Stripe checkout
+      window.location.href = result.redirectUrl;
+    } catch (error) {
+      console.error('Error:', error);
+      // Here you might want to show an error message to the user
+      // You could add a toast notification or error state to the form
+    }
   };
 
   return (
