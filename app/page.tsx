@@ -61,221 +61,313 @@ interface FundingOpportunity {
   category: string
   notes?: string
   deadline?: string
+  max_amount?: string
+  funding_provider?: string
 }
 
 const fundingOpportunities: FundingOpportunity[] = [
   {
-    title: "Canada Small Business Financing Program (CSBFP)",
-    description: "A federal loan-guarantee program that helps small businesses get term loans and lines of credit from banks. It offers up to $1 million in term loans (with sub-limits of $500,000 for equipment/leaseholds and $150,000 for working capital). The Government of Canada guarantees 85% of the loan, making it easier for businesses like Tao Day Spa to finance expansions, equipment purchases, or leasehold improvements.",
-    url: "https://ised-isde.canada.ca/site/canada-small-business-financing-program/en/canada-small-business-financing-program",
-    type: "loans and financing (government-guaranteed term loan)",
-    category: "small business support"
+    "title": "Amber Grant for Women",
+    "description": "Monthly grant of $10,000 for women entrepreneurs, with each monthly winner eligible for a $25,000 year-end grant. Simple application (with a $15 fee) open to women-owned businesses in any industry.",
+    "url": "https://ambergrantsforwomen.com",
+    "type": "non-repayable grant",
+    "category": "women-focused business funding",
+    "deadline": "Monthly (last day of each month)",
+    "max_amount": "$10,000 (monthly); $25,000 annual bonus",
+    "funding_provider": "Amber Grant (WomensNet)"
   },
   {
-    title: "BDC Inclusive Entrepreneurship Loan",
-    description: 'Offered by the Business Development Bank of Canada (BDC), this program provides up to $350,000 in financing for businesses at least 51% owned and led by underrepresented entrepreneurs (including women, Indigenous, and Black owners). It\'s a repayable loan designed to help grow or scale the business (e.g., launching growth projects, purchasing equipment, or investing in technology). Tao Day Spa\'s woman-owned status makes it eligible under the "women entrepreneurs" stream.',
-    url: "https://www.bdc.ca/en/about/what-we-do/diversity-equity-inclusion/women-entrepreneurship",
-    type: "loans and financing",
-    category: "women-focused"
+    "title": "Zensurance Small Business Grant 2024",
+    "description": "Annual small business grant offering a $10,000 grand prize and five $1,000 grants to Canadian small businesses. Open to businesses nationwide (except QC and territories), with 2024 applications from Sept 3 to Nov 8, 2024.",
+    "url": "https://www.zensurance.com/blog/15-business-grants-and-loans-for-women-in-canada",
+    "type": "non-repayable grant (competition)",
+    "category": "competitions and awards",
+    "deadline": "November 8, 2024 (for 2024 cycle)",
+    "max_amount": "$10,000 (grand prize); $1,000 (runner-up grants)",
+    "funding_provider": "Zensurance"
   },
   {
-    "title": "BDC Small Business Loan (Online)",
-    "description": "A quick-access loan from BDC for small businesses, available through an online application. Entrepreneurs can obtain up to $100,000 in financing to grow their business with a 5-year term. It's a flexible, unsecured loan meant to supplement cash flow, invest in online sales, or cover operating expenses. Tao Day Spa can use this for renovations, inventory, or marketing, with no payments on principal for the first 6 months (interest-only in that period).",
-    "url": "https://www.bdc.ca/en/financing/business-loans/small-business-loan",
-    "type": "loans and financing",
-    "category": "small business support"
-  },
-  {
-    "title": "WeBC Business Loans for Women Entrepreneurs",
-    "description": "WeBC (formerly Women's Enterprise Centre of BC) offers business loans of up to $150,000 to women-owned businesses in British Columbia. These loans can support start-up, expansion, or the purchase of a business, with flexible repayment terms up to 5 years. In addition to financing, WeBC provides mentorship and business advisory services tailored to women entrepreneurs.",
-    "url": "https://we-bc.ca/financing/loan-programs/",
-    "type": "loans and financing",
-    "category": "women-focused"
-  },
-  {
-    "title": "Women Entrepreneurship Loan Fund",
-    "description": "A federal micro-loan program offering up to $50,000 for women entrepreneurs to start or grow their businesses. Delivered through select non-profit organizations (e.g. WeBC, Coralus, etc.), it aims to address financing gaps for women-led companies. Tao Day Spa, as a woman-owned business, could apply through the designated partner in BC to access affordable capital for expansion or new initiatives.",
-    "url": "https://ised-isde.canada.ca/site/women-entrepreneurship-strategy/en/women-entrepreneurship-loan-fund",
-    "type": "loans and financing",
-    "category": "women-focused"
-  },
-  {
-    "title": "DELIA Women Entrepreneurship Microloan",
-    "description": "A national loan program (funded by FedDev Ontario) offering affordable microloans of up to $15,000 to women-owned, for-profit businesses across Canada. Applicants must be women (51%+ ownership), Canadian citizens or PRs, and the funds can be used for various business needs. DELIA loans are aimed at closing the financing gap for women entrepreneurs and could help Tao Day Spa invest in new organic product lines or facility upgrades.",
-    "url": "https://ncfdc.ca/delia/",
-    "type": "loans and financing",
-    "category": "women-focused"
-  },
-  {
-    "title": "Scotiabank Women Initiative",
-    "description": "An initiative by Scotiabank that, while not a direct grant, provides women-identifying and non-binary entrepreneurs with access to capital, specialized financing solutions, mentorship, and advisory services. This program is designed to help women-led businesses grow and succeed by offering networking opportunities and tailored financial support. Tao Day Spa can leverage this for mentorship and potentially favorable financing terms through Scotiabank's program.",
-    "url": "https://www.scotiabank.com/women-initiative/",
-    "type": "loans and financing (plus mentorship)",
-    "category": "women-focused"
-  },
-  {
-    "title": "RBC + Women of Influence Entrepreneur Awards",
-    "description": "A grant program offered jointly by RBC and Women of Influence+ that provides financial awards to women entrepreneurs. Winners receive grants in the range of $5,000 to $10,000 along with national recognition. The program celebrates the achievements of women business owners and offers funding to help them advance their companies. As a female entrepreneur, the owner of Tao Day Spa could apply or be nominated to potentially win funding and gain exposure.",
-    "url": "https://www.womenofinfluence.ca/rbc-grant-program/",
-    "type": "non-repayable (grant/award)",
-    "category": "women-focused"
+    "title": "Visa Canada She's Next Grant Program",
+    "description": "Grant program in partnership with IFundWomen that awards ten $10,000 CAD grants to women-owned small businesses in Canada, along with a year of coaching and mentorship. Typically runs annually in the spring.",
+    "url": "https://ifundwomen.com/visa-canada",
+    "type": "non-repayable grant",
+    "category": "women-focused business funding",
+    "deadline": "Spring 2024 (last round closed May 2024; future rounds expected)",
+    "max_amount": "$10,000 per winner",
+    "funding_provider": "Visa Canada & IFundWomen"
   },
   {
     "title": "BMO Celebrating Women Grant Program",
-    "description": "An annual grant program by BMO that awards multiple cash grants to women-owned businesses in Canada. In 2024, BMO provided ten grants of $10,000 each (totaling $100,000) to selected female entrepreneurs across the country. The grants target businesses launching new products or services, expanding to new markets, or creating jobs. Tao Day Spa could apply for the next round to potentially secure $10k in non-repayable funding to fuel its growth.",
-    "url": "https://bmoforwomen.com/celebrating-women-grant-program",
-    "type": "non-repayable (grant)",
-    "category": "women-focused"
+    "description": "Annual program providing 15 grants of $10,000 each to women-owned businesses. Applicants share growth plans addressing specified criteria. The 2024 application window was Apr 30–May 14, 2024, with new rounds expected yearly.",
+    "url": "https://bmoforwomen.smapply.org/",
+    "type": "non-repayable grant",
+    "category": "women-focused business funding",
+    "deadline": "May 14, 2024 (2024 round; typically annual)",
+    "max_amount": "$10,000 per grant",
+    "funding_provider": "BMO (Bank of Montreal)"
   },
   {
-    "title": "Amber Grant for Women",
-    "description": "A monthly grant competition open to women entrepreneurs in Canada and the U.S., run by WomensNet. Each month, one winner receives a $10,000 USD grant, and each monthly winner is eligible for an additional $25,000 year-end grant. The application involves a simple proposal and a $15 fee. This program could provide Tao Day Spa with $10k in funding for a compelling business initiative, given its focus on a female-led venture in wellness.",
-    "url": "https://ambergrantsforwomen.com/",
-    "type": "non-repayable (grant/competition)",
-    "category": "women-focused"
+    "title": "RBC Canadian Women Entrepreneur Awards",
+    "description": "National awards program recognizing women entrepreneurs, with multiple categories and cash grants from $5,000 to $10,000 for winners. Provides recognition, mentorship, and financial support; nominations for 2024 are open now.",
+    "url": "https://www.womenofinfluence.ca/rbc-cwea/",
+    "type": "non-repayable grant (award)",
+    "category": "competitions and awards (women-focused)",
+    "deadline": "Varies by year (2024 nominations open; winners announced Nov 2024)",
+    "max_amount": "$5,000–$10,000 per award",
+    "funding_provider": "RBC & Women of Influence"
   },
   {
-    "title": "Coralus (formerly SheEO) 0% Interest Venture Loans",
-    "description": "A community-funded program where women and non-binary entrepreneurs receive five-year, zero-interest loans (approximately $100,000 each) through a democratic selection process. The loans are repaid into a perpetual fund to support future cohorts. Coralus focuses on ventures with a social or environmental impact. If Tao Day Spa demonstrates strong community impact or innovation in organic wellness, it could be selected as a venture and receive a 0% loan plus mentorship from the Coralus network.",
-    "url": "https://coralus.world/",
-    "type": "loans and financing (zero-interest loan)",
-    "category": "women-focused"
+    "title": "Canada's Total Mom Pitch",
+    "description": "A small business pitch competition for mom entrepreneurs across Canada, offering a $50,000 prize package in funding and business support to the winner. Provides mentorship and exposure; applications typically close in early spring each year.",
+    "url": "https://www.totalmompitch.ca/",
+    "type": "non-repayable grant (competition)",
+    "category": "competitions and awards (women-focused)",
+    "deadline": "Expected March 2025 (annual application cycle)",
+    "max_amount": "$50,000 prize package",
+    "funding_provider": "Total Mom Inc. (with sponsors like QuickBooks)"
   },
   {
-    "title": "EDC Women in Trade – Inclusive Trade Investments Program",
-    "description": "Export Development Canada's Women in Trade initiatives offer financial solutions and resources for women-led businesses looking to expand internationally. For example, the Inclusive Trade Investments Program provides equity capital to help women-owned companies overcome financing gaps. While Tao Day Spa is a local business, if it develops products (e.g., organic skincare) to export or seeks international clients, EDC's program could assist with financing or investment readiness tailored to women entrepreneurs.",
-    "url": "https://www.edc.ca/en/about-us/women-in-trade.html",
-    "type": "equity financing / support",
-    "category": "women-focused"
-  },
-  {
-    "title": "Zensurance Small Business Grant",
-    "description": "An annual small business grant contest open to entrepreneurs across Canada (not limited to women). Zensurance awards a $10,000 grant to one Canadian small business and additional $1,000 grants to five runners-up. The 2024 application window ran from early September to early November. This competition emphasizes innovation and community impact. Tao Day Spa could apply to pitch its organic wellness services for a chance to win $10k to invest in the business.",
-    "url": "https://www.zensurance.com/blog/15-business-grants-and-loans-for-women-in-canada#small-business-grant",
-    "type": "non-repayable (contest grant)",
-    "category": "competitions and awards"
-  },
-  {
-    "title": "FedEx Small Business Grant Contest (Canada)",
-    "description": "A national contest that provides significant grant funding to winning small businesses. In its 2024 edition, FedEx Canada awarded a grand prize of $50,000 and additional grants of $20,000 to nine other winners. Typically, about 10 Canadian businesses are selected each year, receiving funding and FedEx services. If the contest runs in 2025, Tao Day Spa can enter by sharing its business story and plans, aiming to win funding (previous prizes ranged up to $30k for second place).",
-    "url": "https://www.fedex.com/en-ca/small-business/grant-contest.html",
-    "type": "non-repayable (grant contest)",
-    "category": "competitions and awards"
+    "title": "The Odlum Brown Forum Pitch",
+    "description": "Formerly Pitch for the Purse, this national competition for women entrepreneurs awards three finalists with prize packages valued around $30,000 each in cash and support. The 2024 finale awarded approximately $46,500 per winner; annual program with fall/winter application period.",
+    "url": "https://www.theforumpitch.ca/",
+    "type": "non-repayable grant (competition)",
+    "category": "competitions and awards (women-focused)",
+    "deadline": "Fall 2024 (for 2024–25 cohort; varies annually)",
+    "max_amount": "~$30,000 value per finalist",
+    "funding_provider": "The Forum (formerly Forum for Women Entrepreneurs)"
   },
   {
     "title": "TELUS #StandWithOwners Small Business Contest",
-    "description": 'A large annual competition by TELUS for Canadian small businesses with "passion, purpose and perseverance." Winners receive substantial funding, technology, and marketing support. In 2024 (its 5th year), the top prize included $200,000 in funding along with national media recognition. Additional prizes (e.g. $25,000 packages) are often awarded to other finalists. Tao Day Spa could apply by detailing its story and community impact for a chance to win a significant boost in capital and exposure.',
-    "url": "https://www.telus.com/en/business/small-business/stand-with-owners",
-    "type": "non-repayable (contest award)",
-    "category": "competitions and awards"
+    "description": "National contest supporting small businesses with major funding and technology prizes. In 2024, TELUS awarded six grand prizes of $200,000 each and fourteen $20,000 prizes (cash and services). Applications opened June 4 and closed Sep 4, 2024; expected to return in 2025.",
+    "url": "https://www.telus.com/en/business/small/campaigns/stand-with-owners",
+    "type": "non-repayable grant (competition)",
+    "category": "competitions and awards",
+    "deadline": "September 4, 2024 (2024 contest; annual timeline)",
+    "max_amount": "$200,000 (grand prize); $20,000 (other winners)",
+    "funding_provider": "TELUS Business"
   },
   {
-    "title": "Small Business BC Awards",
-    "description": "British Columbia's premier small business recognition program. Businesses can be nominated in categories such as Business Impact, E-commerce Experience, etc. Winners of each category receive a cash prize (e.g., $5,000 for each category winner in recent years), plus a package of business services and publicity. For 2024, four categories were open, each awarding $5k to the winner. Tao Day Spa could be nominated (or self-nominate) for an award, gaining provincial recognition and prize money if it wins.",
-    "url": "https://smallbusinessbc.ca/awards/",
-    "type": "non-repayable (award grant)",
-    "category": "competitions and awards"
+    "title": "FedEx Small Business Grant Contest (Canada)",
+    "description": "Annual contest awarding grants to Canadian small businesses. Typically 10 winners: one grand prize $30,000, one $15,000, and eight $5,000 grants, plus marketing consultation prizes. The 2024 contest closed in May; future editions are anticipated.",
+    "url": "https://www.fedex.com/en-ca/small-business/grant-contest.html",
+    "type": "non-repayable grant (competition)",
+    "category": "competitions and awards",
+    "deadline": "May 2024 (2024 cycle; typically annual spring)",
+    "max_amount": "$30,000 (grand prize); smaller grants for other winners",
+    "funding_provider": "FedEx Canada"
   },
   {
-    "title": "Canada Digital Adoption Program – Grow Your Business Online",
-    "description": "A federal grant to help small businesses adopt e-commerce and digital tools. Eligible businesses can receive a micro-grant of up to $2,400 to offset costs of going digital (e.g. setting up online booking or an e-commerce site). Tao Day Spa can use this grant to enhance its online presence, such as an improved website for bookings or online sales of organic products. The program is open across Canada and also provides e-commerce advisory support.",
+    "title": "Cartier Women's Initiative",
+    "description": "Global entrepreneurship program for women-led impact businesses. Offers coaching and grants to regional laureates (e.g., top North America awardee receives US$100,000). The next call for applications runs Apr 18 – Jun 24, 2025.",
+    "url": "https://www.cartierwomensinitiative.com/",
+    "type": "non-repayable grant (competition)",
+    "category": "competitions and awards (women-focused, sustainability)",
+    "deadline": "June 24, 2025 (2026 edition application deadline)",
+    "max_amount": "US$100,000 (top laureate); US$30,000–$60,000 for other laureates",
+    "funding_provider": "Cartier Women's Initiative"
+  },
+  {
+    "title": "WeBC Business Loans (Women's Enterprise Centre of BC)",
+    "description": "Provides business loans of up to $150,000 for women entrepreneurs in British Columbia to start, scale, or purchase a business. Offers flexible repayment terms and mentoring. Applications are accepted on an ongoing basis.",
+    "url": "https://we-bc.ca/services/loans/",
+    "type": "loans and financing",
+    "category": "women-focused business funding",
+    "deadline": "Ongoing",
+    "max_amount": "$150,000",
+    "funding_provider": "WeBC (Women's Enterprise Centre of BC)"
+  },
+  {
+    "title": "Women Entrepreneurship Loan Fund (WELF)",
+    "description": "A federal micro-loan program offering up to $50,000 to women-owned businesses across Canada. Delivered through select non-profit organizations (e.g., Women's Enterprise Organizations of Canada, NACCA, Coralus). Applications are via participating lenders, open continuously.",
+    "url": "https://ised-isde.canada.ca/site/fednor/en/women-entrepreneurship-loan-fund",
+    "type": "loans and financing",
+    "category": "women-focused business funding",
+    "deadline": "Ongoing",
+    "max_amount": "$50,000",
+    "funding_provider": "Government of Canada (Innovation, Science and Economic Development)"
+  },
+  {
+    "title": "DELIA – Women's Micro Loan Program",
+    "description": "A national microloan program providing affordable loans of $15,000 to women-owned businesses across Canada. Supported by FedDev Ontario and delivered by Northumberland CFDC, it is open to female entrepreneurs 19+, Canadian citizens or PR. Continuous intake via an online platform.",
+    "url": "https://nventure.ca/DELIA",
+    "type": "loans and financing",
+    "category": "women-focused business funding",
+    "deadline": "Ongoing",
+    "max_amount": "$15,000",
+    "funding_provider": "Northumberland CFDC (FedDev Ontario funded)"
+  },
+  {
+    "title": "Coralus (SheEO) 0% Interest Venture Loans",
+    "description": "A community-funded program offering 0% interest, five-year loans to women- and non-binary-owned ventures. Selected businesses (Ventures) receive roughly $100k in no-interest financing plus coaching in a supportive network. Annual call for applications (usually closing in fall).",
+    "url": "https://coralus.world/venture-application",
+    "type": "loans and financing (0% interest)",
+    "category": "women-focused business funding",
+    "deadline": "Annual (e.g., Fall 2024 for 2025 cohort)",
+    "max_amount": "~$100,000 (loan, 0% interest)",
+    "funding_provider": "Coralus (formerly SheEO)"
+  },
+  {
+    "title": "Futurpreneur Canada Startup Loan & Mentorship",
+    "description": "Financing program for young entrepreneurs (aged 18–39) providing up to $60,000 in startup loans, coupled with a 2-year mentorship. Offers initial loan (up to $20K) plus potential BDC match up to $40K. Applications accepted year-round; age criterion applies.",
+    "url": "https://www.futurpreneur.ca/en/launching-your-business/start-up-program/",
+    "type": "loans and financing",
+    "category": "small business support programs",
+    "deadline": "Ongoing",
+    "max_amount": "$60,000 (loan financing)",
+    "funding_provider": "Futurpreneur Canada (with BDC)"
+  },
+  {
+    "title": "Canada Digital Adoption Program (Grow Your Business Online)",
+    "description": "Federal micro-grant up to $2,400 to help small businesses adopt e-commerce and digital technologies. Supports costs like website improvements, digital marketing tools, etc. Available to eligible small businesses (for-profit, <$500k revenue) on a rolling basis.",
     "url": "https://ised-isde.canada.ca/site/canada-digital-adoption-program/en",
-    "type": "non-repayable (grant)",
-    "category": "small business support"
+    "type": "non-repayable grant",
+    "category": "small business support programs (digital adoption)",
+    "deadline": "Ongoing (until funds expended)",
+    "max_amount": "$2,400",
+    "funding_provider": "Innovation, Science and Economic Development Canada"
   },
   {
-    "title": "B.C. Employer Training Grant (ETG)",
-    "description": "A provincial program that reimburses employers for a portion of employee training costs. Businesses in B.C. can receive between 60% and 100% of training expenses covered, up to $300,000 per year. The ETG supports skills development via courses, workshops or third-party training for new or existing staff. Tao Day Spa could utilize this to train employees in advanced esthetics techniques or new wellness services, recovering a significant share of the tuition or training fees.",
-    "url": "https://www.workbc.ca/Employer-Resources/BC-Employer-Training-Grant.aspx",
-    "type": "non-repayable (reimbursement)",
-    "category": "hiring and training incentives"
-  },
-  {
-    "title": "Canada Summer Jobs (CSJ)",
-    "description": "A federal wage-subsidy program to encourage hiring youth (15–30 years old) for summer positions. For-profit businesses like Tao Day Spa can receive funding for up to 50% of the provincial minimum hourly wage for each summer student hired (non-profits get up to 100%). Positions must be full-time (30–40 hours/week) for 6–16 weeks during the summer. By participating, Tao Day Spa could afford to hire and mentor a student (e.g., as a spa assistant or marketing intern) at half the usual wage cost.",
+    "title": "Canada Summer Jobs Wage Subsidy 2025",
+    "description": "Wage subsidy program to encourage hiring youth (15–30) for summer jobs. Private sector employers can receive 50% of minimum wage, and non-profits 100% for each summer employee. Jobs can run Apr 21–Aug 30, 2025; application deadline for 2025 is Dec 19, 2024.",
     "url": "https://www.canada.ca/en/employment-social-development/services/funding/youth-summer-job.html",
-    "type": "wage subsidy",
-    "category": "hiring and training incentives"
-  },
-  {
-    "title": "WorkBC Wage Subsidy Program",
-    "description": "A B.C. program that helps employers hire and train new staff by covering a portion of the employee's wages for up to 24 weeks. Employers can be reimbursed for a negotiated percentage of wages while the new employee gains on-the-job experience and training. This subsidy, available through WorkBC Centers, could assist Tao Day Spa in hiring an additional esthetician or receptionist, offsetting labor costs during the training period. The program may also include support for hiring individuals from underrepresented groups or those facing barriers to employment.",
-    "url": "https://www.workbc.ca/Employment-Services/WorkBC-Centres/WorkBC-Wage-Subsidy.aspx",
-    "type": "wage subsidy",
-    "category": "hiring and training incentives"
+    "type": "hiring incentive (wage subsidy)",
+    "category": "hiring and tax incentives",
+    "deadline": "December 19, 2024 (for Summer 2025 positions)",
+    "max_amount": "50% wage subsidy (100% for nonprofits)",
+    "funding_provider": "Government of Canada (ESDC)"
   },
   {
     "title": "Student Work Placement Program (SWPP)",
-    "description": "A federal program that provides wage subsidies to employers who hire post-secondary students on work terms. Businesses can receive up to $7,000 per student placement to cover a portion of wages (generally 50% of wages up to $5,000, or 70% up to $7,000 for under-represented students). SWPP is delivered through partner organizations (such as Magnet, ICTC, etc.) across various industries. Tao Day Spa could leverage SWPP to hire a co-op or internship student (for example, a marketing student to boost its social media presence) at a significantly reduced cost.",
-    "url": "https://www.canada.ca/en/employment-social-development/programs/student-work-placement-program.html",
-    "type": "wage subsidy",
-    "category": "hiring and training incentives"
+    "description": "Federal program that subsidizes wages for post-secondary student interns. Employers can be reimbursed 50% of wages up to $5,000 per placement, or 70% up to $7,000 for hiring first-year students or those from under-represented groups. Applications are handled by partner organizations year-round.",
+    "url": "https://www.canada.ca/en/employment-social-development/programs/work-integrated-learning.html",
+    "type": "hiring incentive (wage subsidy)",
+    "category": "hiring and tax incentives",
+    "deadline": "Ongoing (continuous intake by delivery partners each term)",
+    "max_amount": "$5,000–$7,000 per placement",
+    "funding_provider": "Government of Canada (ESDC, delivered via partners)"
   },
   {
-    "title": "Apprenticeship Job Creation Tax Credit (Federal)",
-    "description": "A federal tax credit for employers who hire apprentices in Red Seal trades. The credit equals 10% of eligible apprentice wages, up to $2,000 per year per apprentice. If Tao Day Spa hires an apprentice in a relevant trade (e.g., hairstylist if the spa offers hair services and the trade is designated), it can claim this non-refundable credit on its tax return, effectively reducing taxes owed by up to $2,000 annually for that apprentice.",
-    "url": "https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/credits/ajctc.html",
-    "type": "tax incentive (credit)",
-    "category": "hiring and tax incentives"
+    "title": "WorkBC Wage Subsidy Program",
+    "description": "BC provincial wage subsidy to help employers hire and train new employees. Covers a portion of wages for up to 24 weeks, starting at ~50% and tapering to 15%. Employers must register with WorkBC; subsidy amount/duration depends on training needs. Open year-round.",
+    "url": "https://www.workbc.ca/Employment-Services/WorkBC-Centres/Wage-Subsidy.aspx",
+    "type": "hiring incentive (wage subsidy)",
+    "category": "hiring and tax incentives",
+    "deadline": "Ongoing",
+    "max_amount": "≈50% of wages (initial), decreasing to 15% over 24 weeks",
+    "funding_provider": "WorkBC (Province of BC)"
   },
   {
-    "title": "B.C. Employer Training Tax Credit (Apprentices)",
-    "description": "A refundable provincial tax credit for employers in B.C. who hire and train apprentices in eligible programs. This credit provides financial support for each level of apprenticeship completed and was recently extended until at least the end of 2027. If Tao Day Spa takes on an apprentice (for instance, in a cosmetology or hairstyling program recognized by SkilledTradesBC), it can receive provincial tax credits as the apprentice reaches certain training milestones. This incentive helps offset the costs of apprenticeship training by returning funds to the employer via the tax system.",
-    "url": "https://www2.gov.bc.ca/gov/content/taxes/income-taxes/corporate/credits/training/employer",
-    "type": "tax incentive (refundable credit)",
-    "category": "hiring and tax incentives"
+    "title": "B.C. Employer Training Grant (ETG)",
+    "description": "Cost-sharing program that funds skills training for employees. Employers can receive up to 80% of training costs, to a maximum of $10,000 per worker and $300,000 per year. Several funding streams (e.g., workforce training, technical skills). Applications open year-round via online portal.",
+    "url": "https://www.workbc.ca/Employer-Resources/BC-Employer-Training-Grant.aspx",
+    "type": "non-repayable grant",
+    "category": "hiring and tax incentives (training support)",
+    "deadline": "Ongoing (applications accepted anytime)",
+    "max_amount": "$10,000 per trainee (up to $300,000 per employer annually)",
+    "funding_provider": "Province of BC (WorkBC/Ministry of Skills Training)"
   },
   {
-    "title": "BC Hydro – Business Energy Saving Incentives (BESI)",
-    "description": "BC Hydro offers financial incentives to commercial customers for energy-efficient equipment upgrades. Eligible businesses can receive up to 25% of the cost of upgrading lighting, HVAC, refrigeration, or other energy-intensive systems to high-efficiency models. These incentives reduce the upfront cost and shorten the payback period of green upgrades. For example, Tao Day Spa could upgrade to LED lighting or efficient water heaters and have a portion of the project costs covered by BC Hydro incentives, lowering energy bills and supporting sustainability goals.",
-    "url": "https://www.bchydro.com/powersmart/business/programs/business-energy-saving-incentives.html",
-    "type": "non-repayable (rebate/incentive)",
-    "category": "green and sustainability initiatives"
+    "title": "Canada Small Business Financing Program (CSBFP)",
+    "description": "Government-backed loan program that helps small businesses secure up to $1,000,000 in financing for expansion and improvements. Loans (term loans and lines of credit) are issued by participating financial institutions under CSBFP guarantee. Available year-round via banks/credit unions.",
+    "url": "https://ised-isde.canada.ca/site/canada-small-business-financing-program/en",
+    "type": "loans and financing (loan guarantee)",
+    "category": "small business support programs",
+    "deadline": "Ongoing",
+    "max_amount": "$1,000,000 (term loan); $150,000 (lines of credit)",
+    "funding_provider": "Innovation, Science and Economic Development Canada (through banks)"
   },
   {
-    "title": "FortisBC Energy Efficiency Rebates (Commercial)",
-    "description": "FortisBC provides rebates to businesses that upgrade to energy-efficient natural gas equipment. Incentives range widely—for example, rebates from $75 up to $6,600 for replacing old commercial kitchen, laundry, or water-heating equipment with high-efficiency models. Additionally, FortisBC offers rebates (often $100–$150 per unit) for installing high-efficiency lighting and HVAC controls. If Tao Day Spa uses natural gas for water heating, laundry, or heating, it could tap into these rebates when purchasing efficient appliances, reducing the capital cost of sustainable upgrades.",
-    "url": "https://betterbuildingsbc.ca/incentives/fortisbc-commercial-equipment-upgrades/",
-    "type": "non-repayable (rebate)",
-    "category": "green and sustainability initiatives"
+    "title": "Tourism Richmond Cooperative Marketing Investment Program 2025",
+    "description": "Matching funding (50/50) for collaborative marketing or experience development projects that promote Richmond as a destination. Richmond tourism businesses partnering together can apply. No fixed deadline noted for 2025 – projects are reviewed on an ongoing annual cycle.",
+    "url": "https://www.visitrichmondbc.com/itineraries/cooperative-marketing-investment-program/",
+    "type": "non-repayable grant (matching)",
+    "category": "local business support (tourism marketing)",
+    "deadline": "Ongoing/annual (info sessions and intakes periodically)",
+    "max_amount": "50% of project costs (up to project-specific limits)",
+    "funding_provider": "Tourism Richmond"
   },
   {
-    "title": "CleanBC Go Electric Vehicle Rebate (Business Fleet)",
-    "description": "CleanBC's Go Electric program encourages the adoption of zero-emission vehicles (ZEVs) in B.C. Small businesses can receive up to $3,000 off the purchase or lease of a new electric vehicle (provincial rebate), which can be combined with the federal iZEV rebate of up to $5,000 for a total of $8,000 in incentives on a single EV. For Tao Day Spa, this could be relevant if the business needs a vehicle (e.g., for mobile services or product deliveries) – switching to an EV would come with substantial upfront discounts. Additionally, rebates are available for installing EV charging stations at workplaces, which could benefit the spa's customers and staff.",
-    "url": "https://goelectricbc.gov.bc.ca/",
-    "type": "rebate (point-of-sale and post-purchase)",
-    "category": "green and sustainability initiatives"
+    "title": "Travel Trade & Media Marketplace Grant 2025 (Richmond)",
+    "description": "Grants up to $1,000 to help Richmond tourism businesses attend key travel trade or media events. Covers registration fees for events like Rendez-vous Canada, CITAP, etc. Limited number available first-come, first-served. Application via Tourism Richmond; open until funds are allocated.",
+    "url": "https://www.visitrichmondbc.com/itineraries/travel-trade-and-media-marketplace-grant-2025/",
+    "type": "non-repayable grant",
+    "category": "local business support (tourism)",
+    "deadline": "Ongoing (for 2025 events, until budget is used)",
+    "max_amount": "$1,000 per business",
+    "funding_provider": "Tourism Richmond"
   },
   {
-    "title": "CanExport SMEs Program",
-    "description": "A federal grant program that funds export development activities for small and medium-sized enterprises. CanExport covers 50% of eligible project costs (such as international marketing, trade shows, market research, IP protection) up to a maximum of $50,000 per project. To qualify, a business must have $100k–$100M in revenue and under 500 employees. If Tao Day Spa creates its own line of organic skincare products and seeks overseas distributors or spa partners, it could use CanExport to finance international marketing efforts. (Minimum project spend is $20k, yielding a $10k+ reimbursement).",
-    "url": "https://tradecommissioner.gc.ca/funding/canexport/sme-pme/index.aspx",
-    "type": "non-repayable (grant, cost-reimbursement)",
-    "category": "industry-specific (business expansion/export)"
+    "title": "CleanBC Go Electric EV Charger Rebate (Workplace)",
+    "description": "Rebates to install electric vehicle charging stations at workplaces. Businesses can get 50% of costs, up to $2,000 per Level 2 charger (max $14,000 per site). Pre-approval from BC Hydro required; applications open until funds are fully subscribed.",
+    "url": "https://goelectricbc.gov.bc.ca/for-businesses/#workplace-chargers",
+    "type": "rebate (non-repayable)",
+    "category": "green and sustainability initiatives",
+    "deadline": "Ongoing (until funding is exhausted)",
+    "max_amount": "$2,000 per charger (50% of cost; up to $14,000 per site)",
+    "funding_provider": "Province of BC (CleanBC, via BC Hydro/FortisBC)"
   },
   {
-    "title": "Mastercard x Pier Five Small Business Fund",
-    "description": 'A private grant initiative launched by Mastercard in partnership with Pier Five, targeting Canadian women small business owners. The fund awards $10,000 CAD grants to 10 women-led businesses, along with a "Priceless" business mentorship experience in Toronto. Recipients gain access to a network of peers and experts to help fuel their growth. Announced in February 2025, this program underscores support for women entrepreneurs in various sectors (tech, wellness, etc.). Tao Day Spa\'s owner could apply for a chance to receive $10k and high-profile mentorship to scale the business.',
-    "url": "https://www.mastercard.ca/en-ca/business/small-business/pier-five-fund.html",
-    "type": "non-repayable (grant)",
-    "category": "women-focused"
+    "title": "CleanBC Plastics Action Fund",
+    "description": "Grant funding for projects that reduce plastic waste through recycling, reuse or remanufacturing innovations. Covers up to 66% of project costs (projects typically $250k–$1.2M). Eligible BC businesses, non-profits, Indigenous organizations. **Deadline**: December 2, 2024 (or until funds are allocated).",
+    "url": "https://www.alacritycanada.com/cleanbc-plastics-action-fund/",
+    "type": "non-repayable grant",
+    "category": "green and sustainability initiatives",
+    "deadline": "December 2, 2024 (current intake)",
+    "max_amount": "66% of project costs (no explicit dollar cap given; typical project $250k–$1.2M)",
+    "funding_provider": "CleanBC (Province of BC, administered by Alacrity Canada)"
   },
   {
-    "title": "Tourism Innovation Lab \"Spark\" Mentorships & Grants",
-    "description": "A program to spur innovative tourism ideas in British Columbia. The \"Spark\" program, run in collaboration with Destination BC and regional partners, provides a $3,000 seed grant and 3-month mentorship to selected tourism entrepreneurs and small businesses. The goal is to develop new tourism experiences or services. If Tao Day Spa proposes a creative wellness tourism experience (for example, an authentic spa package for visitors or a cultural wellness tour in Steveston), it could win funding and expert mentorship to bring that idea to life. Calls for applications are region-specific and were open in early 2024 for certain corridors.",
-    "url": "https://www.tourisminnovation.ca/bc-spark",
-    "type": "non-repayable (seed grant and mentorship)",
-    "category": "competitions and awards; industry-specific (tourism)"
+    "title": "B.C. Electricity Affordability Credit (Commercial)",
+    "description": "A one-time bill credit in 2024 to reduce electricity costs for businesses as part of BC's climate action plan. Commercial customers receive a credit equal to ~4.6% of annual consumption, averaging $400 in savings for a small business. Automatically applied on BC Hydro/FortisBC bills starting April 2024.",
+    "url": "https://news.gov.bc.ca/releases/2024EMLI0013-000405",
+    "type": "tax incentive (utility bill credit)",
+    "category": "green and sustainability initiatives",
+    "deadline": "N/A (automatic in 2024)",
+    "max_amount": "~4.6% of annual electricity costs (approx. $400 for a small business)",
+    "funding_provider": "Province of BC"
   },
   {
-    "title": "Canada Digital Adoption Program – Boost Your Business Technology",
-    "description": "The second stream of CDAP that helps SMEs adopt complex digital technologies. Eligible businesses can receive up to $15,000 in grants (covering 90% of costs) to hire a certified digital advisor who will develop a Digital Adoption Plan. After completing the plan, the business becomes eligible for a zero-interest BDC loan of up to $100,000 to implement the plan's recommendations. For Tao Day Spa, this could mean engaging an advisor to plan a technology upgrade (like a new booking system, CRM, or advanced spa equipment) at minimal cost, then accessing interest-free financing to purchase and implement those digital solutions.",
-    "url": "https://ised-isde.canada.ca/site/canada-digital-adoption-program/en/boost-your-business-technology",
-    "type": "mixed (grant for advisory + 0% loan)",
-    "category": "small business support; digital adoption"
+    "title": "Enabling Accessibility Fund – Small Projects",
+    "description": "Federal grant program to improve accessibility in workplaces and community spaces. Provides up to $100,000 per project for renovations such as ramps, elevators, accessible washrooms. Current call prioritizes certain groups (e.g., Indigenous-led projects). Calls for proposals are periodic; the 2025 CFP was recently announced.",
+    "url": "https://www.canada.ca/en/employment-social-development/programs/enabling-accessibility-fund.html",
+    "type": "non-repayable grant",
+    "category": "small business support (accessibility)",
+    "deadline": "2025 call open (deadline to be announced; typically annual)",
+    "max_amount": "$100,000",
+    "funding_provider": "Employment and Social Development Canada"
+  },
+  {
+    "title": "Apprenticeship Job Creation Tax Credit (AJCTC)",
+    "description": "A federal tax credit for employers hiring apprentices in Red Seal trades. The credit equals 10% of eligible apprentice wages, up to $2,000 per apprentice per year. Employers claim it on their tax return for apprentices in first two years of their program.",
+    "url": "https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/credits/apprenticeship-job-creation.html",
+    "type": "tax incentive (hiring credit)",
+    "category": "hiring and tax incentives",
+    "deadline": "N/A (claim via tax filing annually)",
+    "max_amount": "$2,000 per apprentice per year",
+    "funding_provider": "Government of Canada (CRA)"
+  },
+  {
+    "title": "British Columbia Training Tax Credit (Employers)",
+    "description": "Refundable provincial tax credits for employing apprentices in eligible trades programs. For non-Red Seal programs, employers get 20% of wages paid in first 24 months (Basic credit). Completion credits of 15% of wages (up to $2,500 for level 3; $3,000 for level 4) reward apprentices completing training. Enhanced credits available if the apprentice is Indigenous or has a disability.",
+    "url": "https://www2.gov.bc.ca/gov/content/taxes/income-taxes/corporate/credits/training-tax-credit",
+    "type": "tax incentive (hiring credit)",
+    "category": "hiring and tax incentives",
+    "deadline": "N/A (claim via tax return)",
+    "max_amount": "Basic: up to $6,000; Completion: up to $2,500–$3,000 (with higher amounts for eligible groups)",
+    "funding_provider": "Province of British Columbia"
+  },
+  {
+    "title": "Scotiabank Women Initiative",
+    "description": "A comprehensive program (not a direct grant) offering women entrepreneurs access to capital, tailored financing solutions, mentorship, and advisory services. Helps women-led businesses secure financing and offers networking and educational resources. Open to women and non-binary business owners in all industries.",
+    "url": "https://www.scotiabank.com/women-initiative",
+    "type": "loans and financing (with mentorship)",
+    "category": "women-focused business support",
+    "deadline": "Ongoing",
+    "max_amount": "Varies (financing up to ~$150,000 or more)",
+    "funding_provider": "Scotiabank"
   }
 ];
-
+ 
 function DialogModalContent() {
   const [starredOpportunities, setStarredOpportunities] = useState<Set<number>>(new Set())
   const [activeCategory, setActiveCategory] = useState<string>("")
@@ -306,6 +398,8 @@ function DialogModalContent() {
     {} as Record<string, FundingOpportunity[]>,
   )
 
+  const totalOpportunities = fundingOpportunities.length
+
   const scrollToCategory = (category: string) => {
     setActiveCategory(category)
     const element = categoryRefs.current[category]
@@ -326,15 +420,17 @@ function DialogModalContent() {
       <div className="w-full bg-gray-50 min-h-full">
         <div className="max-w-6xl mx-auto px-8 py-8">
           <h1 className="text-4xl font-bold mb-2 text-gray-900">Funding Opportunities (Sample)</h1>
-          <p className="text-xl text-gray-600 mb-8">For Tao Day Spa (Steveston, BC)</p>
+          <p className="text-xl text-gray-600 mb-8">
+            For Tao Day Spa (Steveston, BC) • {totalOpportunities} opportunities found
+          </p>
 
-          <div className="sticky top-0 bg-gray-50 py-4 z-10 flex items-center gap-4">
+          <div className="sticky top-0 bg-gray-50 py-4 z-10">
             <Select
               value={activeCategory}
               onValueChange={(value) => scrollToCategory(value)}
             >
               <SelectTrigger className="w-[300px]">
-                <SelectValue placeholder="Select a category" />
+                <SelectValue placeholder="Jump to category" />
               </SelectTrigger>
               <SelectContent>
                 {Object.keys(groupedOpportunities).map((category) => (
@@ -344,22 +440,6 @@ function DialogModalContent() {
                 ))}
               </SelectContent>
             </Select>
-
-            <div className="flex-1 overflow-x-auto">
-              <div className="flex gap-2">
-                {Object.keys(groupedOpportunities).map((category) => (
-                  <Button
-                    key={category}
-                    variant={activeCategory === category ? "default" : "ghost"}
-                    size="sm"
-                    onClick={() => scrollToCategory(category)}
-                    className="whitespace-nowrap"
-                  >
-                    {category.charAt(0).toUpperCase() + category.slice(1)}
-                  </Button>
-                ))}
-              </div>
-            </div>
           </div>
 
           <div className="space-y-12 pl-4">
@@ -377,13 +457,20 @@ function DialogModalContent() {
                   {opportunities.map((opportunity, index) => (
                     <Card key={index} className="bg-white shadow-sm hover:shadow-md transition-shadow duration-300">
                       <CardHeader className="bg-gray-50 border-b">
-                        <div className="flex justify-between items-start">
-                          <CardTitle className={`text-lg font-semibold text-gray-900 ${index > 0 ? "blur-sm select-none" : ""}`}>
-                            {opportunity.title}
-                          </CardTitle>
+                        <div className="flex justify-between items-start gap-4">
+                          <div className="flex-1">
+                            <CardTitle className={`text-lg font-semibold text-gray-900 ${index > 0 ? "blur-sm select-none" : ""}`}>
+                              {opportunity.title}
+                            </CardTitle>
+                            {opportunity.funding_provider && (
+                              <p className={`text-sm text-gray-500 mt-1 ${index > 0 ? "blur-sm select-none" : ""}`}>
+                                by {opportunity.funding_provider}
+                              </p>
+                            )}
+                          </div>
                           <button
                             onClick={(e) => toggleStar(index, e)}
-                            className="text-gray-400 hover:text-yellow-400 transition-colors duration-300"
+                            className="text-gray-400 hover:text-yellow-400 transition-colors duration-300 shrink-0"
                             aria-label={
                               starredOpportunities.has(index) ? "Unstar this opportunity" : "Star this opportunity"
                             }
@@ -395,26 +482,41 @@ function DialogModalContent() {
                         </div>
                       </CardHeader>
                       <CardContent className="p-4">
-                        <p className={`text-sm text-gray-600 mb-4 ${index > 0 ? "blur-sm select-none" : ""}`}>
+                        <p className={`text-sm text-gray-600 mb-6 ${index > 0 ? "blur-sm select-none" : ""}`}>
                           {opportunity.description}
                         </p>
-                        <div className="space-y-2 text-xs text-gray-500">
-                          <p>
-                            <span className="font-semibold">Type:</span> {opportunity.type}
-                          </p>
-                          {opportunity.deadline && (
-                            <p>
-                              <span className="font-semibold">Deadline:</span> {opportunity.deadline}
-                            </p>
-                          )}
+                        <div className="grid gap-4">
+                          <div className="grid grid-cols-2 gap-4">
+                            {opportunity.max_amount && (
+                              <div className="space-y-1">
+                                <p className="text-xs font-medium text-gray-500">Maximum Amount</p>
+                                <p className="text-sm font-semibold text-gray-900">{opportunity.max_amount}</p>
+                              </div>
+                            )}
+                            {opportunity.deadline && (
+                              <div className="space-y-1">
+                                <p className="text-xs font-medium text-gray-500">Deadline</p>
+                                <p className="text-sm font-semibold text-gray-900">{opportunity.deadline}</p>
+                              </div>
+                            )}
+                          </div>
+                          <div className="space-y-1">
+                            <p className="text-xs font-medium text-gray-500">Type</p>
+                            <div className="flex flex-wrap gap-2">
+                              <span className="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">
+                                {opportunity.type}
+                              </span>
+                            </div>
+                          </div>
                           {opportunity.notes && (
-                            <p>
-                              <span className="font-semibold">Notes:</span> {opportunity.notes}
-                            </p>
+                            <div className="space-y-1">
+                              <p className="text-xs font-medium text-gray-500">Additional Notes</p>
+                              <p className="text-sm text-gray-600">{opportunity.notes}</p>
+                            </div>
                           )}
                         </div>
                         {index === 0 && (
-                          <div className="mt-4 text-sm text-gray-500 italic">
+                          <div className="mt-6 pt-6 border-t border-gray-100 text-sm text-gray-500 italic">
                             Full details available in your personalized report
                           </div>
                         )}
