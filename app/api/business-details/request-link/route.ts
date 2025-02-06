@@ -20,11 +20,11 @@ export async function POST(request: Request) {
     const client = await clientPromise;
     const db = client.db("grantPathway");
     
-    // Find the business details by email
-    const businessDetails = await db.collection("businessDetails").findOne({ email });
+    // Find user by email
+    const user = await db.collection("users").findOne({ email });
 
-    if (!businessDetails) {
-      return NextResponse.json({ error: 'No business details found for this email' }, { status: 404 });
+    if (!user) {
+      return NextResponse.json({ error: 'No account found for this email' }, { status: 404 });
     }
 
     // Generate new token and expiry
@@ -32,18 +32,19 @@ export async function POST(request: Request) {
     const tokenExpiresAt = new Date();
     tokenExpiresAt.setDate(tokenExpiresAt.getDate() + 30);
 
-    // Update the document with new token
-    await db.collection("businessDetails").updateOne(
-      { _id: businessDetails._id },
+    // Update user with new token
+    await db.collection("users").updateOne(
+      { _id: user._id },
       { 
         $set: { 
           token,
-          tokenExpiresAt
+          tokenExpiresAt,
+          updatedAt: new Date()
         }
       }
     );
 
-    const link= `${process.env.NEXT_PUBLIC_BASE_URL}/success?token=${token}`;
+    const link = `${process.env.NEXT_PUBLIC_BASE_URL}/success?token=${token}`;
     
     // Send magic link email using template
     await sendTemplateEmail({
@@ -51,7 +52,7 @@ export async function POST(request: Request) {
       subject: 'Your Grant Pathway Report Access Link',
       template: 'magic link request',
       variables: {
-        link: link
+        link
       }
     });
 

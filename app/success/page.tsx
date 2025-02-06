@@ -9,9 +9,13 @@ import { Card } from '@/components/ui/card';
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 
+interface User {
+  email: string;
+  createdAt: string;
+}
+
 interface BusinessDetails {
   businessName: string;
-  email: string;
   city: string;
   province: string;
   businessType: string;
@@ -30,8 +34,10 @@ interface BusinessDetails {
 export default function SuccessPage() {
   const searchParams = useSearchParams();
   const token = searchParams.get('token');
+  const businessDetailsId = searchParams.get('bid');
   
-  const [businessDetails, setBusinessDetails] = useState<BusinessDetails | null>(null);
+  const [user, setUser] = useState<User | null>(null);
+  const [businessDetails, setBusinessDetails] = useState<BusinessDetails[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [email, setEmail] = useState('');
@@ -43,23 +49,30 @@ export default function SuccessPage() {
     } else {
       setLoading(false);
     }
-  }, [token]);
+  }, [token, businessDetailsId]);
 
   const fetchBusinessDetails = async () => {
     try {
-      const response = await fetch(`/api/business-details/verify?token=${token}`);
+      const url = businessDetailsId 
+        ? `/api/business-details/verify?token=${token}&bid=${businessDetailsId}`
+        : `/api/business-details/verify?token=${token}`;
+        
+      const response = await fetch(url);
       const data = await response.json();
       
       if (data.error) {
         setError(data.error);
-        setBusinessDetails(null);
+        setUser(null);
+        setBusinessDetails([]);
       } else {
+        setUser(data.user);
         setBusinessDetails(data.businessDetails);
         setError(null);
       }
     } catch (err) {
       setError('Failed to fetch business details');
-      setBusinessDetails(null);
+      setUser(null);
+      setBusinessDetails([]);
     } finally {
       setLoading(false);
     }
@@ -110,47 +123,58 @@ export default function SuccessPage() {
       {/* Main Content */}
       <main className="pt-24 pb-16 px-4">
         <div className="max-w-3xl mx-auto">
-          {businessDetails ? (
+          {user && businessDetails.length > 0 ? (
             <div className="space-y-8">
               <div className="text-center">
-                <h1 className="text-3xl font-bold mb-2">Payment Successful!</h1>
+                <h1 className="text-3xl font-bold mb-2">Welcome Back, {user.email}!</h1>
                 <p className="text-lg text-muted-foreground">
-                  We'll prepare your personalized grant report within 48 hours.
+                  {businessDetailsId 
+                    ? "Here are your business details and report status."
+                    : "Here are all your business details and report statuses."}
                 </p>
               </div>
 
-              <Card className="p-6">
-                <h2 className="text-xl font-semibold mb-4">Business Details</h2>
-                <dl className="grid gap-4">
-                  <div>
-                    <dt className="text-sm font-medium text-muted-foreground">Business Name</dt>
-                    <dd className="text-lg">{businessDetails.businessName}</dd>
+              {businessDetails.map((details, index) => (
+                <Card key={index} className="p-6">
+                  <div className="flex justify-between items-start mb-4">
+                    <h2 className="text-xl font-semibold">Business Details</h2>
+                    <div className="text-sm">
+                      <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-blue-100 text-blue-800">
+                        {details.status}
+                      </span>
+                    </div>
                   </div>
-                  <div>
-                    <dt className="text-sm font-medium text-muted-foreground">Email</dt>
-                    <dd>{businessDetails.email}</dd>
-                  </div>
-                  <div>
-                    <dt className="text-sm font-medium text-muted-foreground">Location</dt>
-                    <dd>{businessDetails.city}, {businessDetails.province}</dd>
-                  </div>
-                  <div>
-                    <dt className="text-sm font-medium text-muted-foreground">Business Type</dt>
-                    <dd>{businessDetails.businessType}</dd>
-                  </div>
-                  <div>
-                    <dt className="text-sm font-medium text-muted-foreground">Industry</dt>
-                    <dd>{businessDetails.otherIndustry || businessDetails.industry}</dd>
-                  </div>
-                  <div>
-                    <dt className="text-sm font-medium text-muted-foreground">Business Stage</dt>
-                    <dd>{businessDetails.businessStage}</dd>
-                  </div>
-                </dl>
-              </Card>
+                  <dl className="grid gap-4">
+                    <div>
+                      <dt className="text-sm font-medium text-muted-foreground">Business Name</dt>
+                      <dd className="text-lg">{details.businessName}</dd>
+                    </div>
+                    <div>
+                      <dt className="text-sm font-medium text-muted-foreground">Location</dt>
+                      <dd>{details.city}, {details.province}</dd>
+                    </div>
+                    <div>
+                      <dt className="text-sm font-medium text-muted-foreground">Business Type</dt>
+                      <dd>{details.businessType}</dd>
+                    </div>
+                    <div>
+                      <dt className="text-sm font-medium text-muted-foreground">Industry</dt>
+                      <dd>{details.otherIndustry || details.industry}</dd>
+                    </div>
+                    <div>
+                      <dt className="text-sm font-medium text-muted-foreground">Business Stage</dt>
+                      <dd>{details.businessStage}</dd>
+                    </div>
+                    <div>
+                      <dt className="text-sm font-medium text-muted-foreground">Submitted On</dt>
+                      <dd>{new Date(details.createdAt).toLocaleDateString()}</dd>
+                    </div>
+                  </dl>
+                </Card>
+              ))}
 
               <div className="text-center text-muted-foreground">
-                <p>Bookmark this page or check your email for a link to view your report when it's ready.</p>
+                <p>Bookmark this page or check your email for updates about your report.</p>
               </div>
             </div>
           ) : (

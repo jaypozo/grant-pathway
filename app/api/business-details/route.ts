@@ -33,17 +33,68 @@ export async function POST(request: Request) {
     const client = await clientPromise;
     const db = client.db("grantPathway");
     
-    const token = generateToken();
-    const expiresAt = new Date();
-    expiresAt.setDate(expiresAt.getDate() + 30); // 30 days from now
+    // Check for existing valid token
+    const existingUser = await db.collection("users").findOne({
+      email: data.email,
+      tokenExpiresAt: { $gt: new Date() }
+    });
 
-    // Add timestamp and token to the data
+    let token;
+    let user;
+
+    if (existingUser) {
+      // Use existing token
+      token = existingUser.token;
+      user = existingUser;
+    } else {
+      // Create new token
+      token = generateToken();
+      const tokenExpiresAt = new Date();
+      tokenExpiresAt.setDate(tokenExpiresAt.getDate() + 30);
+
+      // Create or update user
+      const result = await db.collection("users").findOneAndUpdate(
+        { email: data.email },
+        { 
+          $setOnInsert: { 
+            email: data.email,
+            createdAt: new Date()
+          },
+          $set: {
+            token,
+            tokenExpiresAt,
+            updatedAt: new Date()
+          }
+        },
+        { 
+          upsert: true,
+          returnDocument: 'after'
+        }
+      );
+
+      if (!result) {
+        throw new Error('Failed to create/update user');
+      }
+      user = result;
+    }
+
+    // Create business details linked to user
     const businessDetails = {
-      ...data,
+      userId: user._id,
+      businessName: data.businessName,
+      city: data.city,
+      province: data.province,
+      businessType: data.businessType,
+      industry: data.industry,
+      otherIndustry: data.otherIndustry,
+      businessStage: data.businessStage,
+      startDate: data.startDate,
+      gender: data.gender,
+      ageRange: data.ageRange,
+      underrepresentedGroups: data.underrepresentedGroups,
+      otherUnderrepresentedGroup: data.otherUnderrepresentedGroup,
       createdAt: new Date(),
-      status: 'pending_payment',
-      token,
-      tokenExpiresAt: expiresAt
+      status: 'pending_payment'
     };
 
     const result = await db.collection("businessDetails").insertOne(businessDetails);
@@ -57,10 +108,11 @@ export async function POST(request: Request) {
         },
       ],
       mode: 'payment',
-      success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/success?token=${token}`,
+      success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/success?token=${token}&bid=${result.insertedId.toString()}`,
       cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/business-details`,
       metadata: {
         businessDetailsId: result.insertedId.toString(),
+        userId: user._id.toString(),
         token
       },
       payment_method_types: ['card'],
@@ -73,7 +125,7 @@ export async function POST(request: Request) {
     }
 
     // Send confirmation email using template
-    const reportLink = `${process.env.NEXT_PUBLIC_BASE_URL}/success?token=${token}`;
+    const reportLink = `${process.env.NEXT_PUBLIC_BASE_URL}/success?token=${token}&bid=${result.insertedId.toString()}`;
     await sendTemplateEmail({
       to: data.email,
       subject: 'Welcome to Grant Pathway - Payment Confirmation',
