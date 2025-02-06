@@ -638,27 +638,6 @@ export default function Home() {
     setOpen(false);
   };
 
-  const testimonials = [
-    {
-      name: 'Sarah Chen',
-      company: 'TechVision Inc.',
-      content: 'The grant report we received helped us identify over $250,000 in potential funding. Absolutely worth the investment.',
-      role: 'Founder & CEO',
-    },
-    {
-      name: 'Michael Thompson',
-      company: 'EcoSolutions Canada',
-      content: 'Grant Pathway streamlined our search for sustainability grants. Their report was thorough and actionable.',
-      role: 'Operations Director',
-    },
-    {
-      name: 'Priya Patel',
-      company: 'Innovation Labs',
-      content: 'The level of detail in our customized report was impressive. We successfully secured two grants from their recommendations.',
-      role: 'Managing Director',
-    },
-  ];
-
   const faqs = [
     {
       question: 'How detailed is the grant report?',
@@ -740,10 +719,10 @@ export default function Home() {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
             <a 
-              href="#testimonials" 
+              href="#sample-report" 
               className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
             >
-              Testimonials
+              Sample Report
             </a>
             <a 
               href="#pricing" 
@@ -770,10 +749,10 @@ export default function Home() {
               </SheetHeader>
               <div className="flex flex-col gap-4 mt-6">
                 <a 
-                  href="#testimonials" 
+                  href="#sample-report" 
                   className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  Testimonials
+                  Sample Report
                 </a>
                 <a 
                   href="#pricing" 
@@ -983,7 +962,7 @@ export default function Home() {
         </section>
 
         {/* View Sample Report */}
-        <section className="py-20 px-4 bg-[#57ad0b]/5">
+        <section id="sample-report" className="py-20 px-4 bg-[#57ad0b]/5">
           <div className="max-w-3xl mx-auto text-center">
             <div className="relative">
               <div className="absolute inset-0 bg-grid-black/5 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
