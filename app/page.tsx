@@ -859,10 +859,10 @@ export default function Home() {
                 <p className="text-lg text-muted-foreground mb-6">
                   Finding funding takes time—you either comb the internet or pay someone to do it. I’ve done it myself, and now that I’m starting something new, I built a tool that does the searching for you. Friends—whether running something successful or figuring out their next move—have used it to find funding they would’ve missed. If that sounds useful, give it a try.
                 </p>
-                <Link href="/about">
+                <Link target="_blank" href="https://www.linkedin.com/in/jaypozo/">
                   <Button variant="outline" className="gap-2">
-                    Learn More About My Journey
                     <ArrowRight className="w-4 h-4" />
+                    Connect with Jay on LinkedIn
                   </Button>
                 </Link>
               </div>
