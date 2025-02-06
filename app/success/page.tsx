@@ -6,8 +6,9 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card } from '@/components/ui/card';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Clock, CheckCircle, Mail, Bookmark, Bot, Sparkles } from 'lucide-react';
 import Link from 'next/link';
+import { cn } from '@/lib/utils';
 
 interface User {
   email: string;
@@ -29,6 +30,24 @@ interface BusinessDetails {
   otherUnderrepresentedGroup?: string;
   status: string;
   createdAt: string;
+}
+
+function formatDateTime(date: string) {
+  return new Date(date).toLocaleString('en-US', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    timeZoneName: 'short'
+  });
+}
+
+function getDeliveryDateTime(submissionDate: string) {
+  const deliveryDate = new Date(submissionDate);
+  deliveryDate.setHours(deliveryDate.getHours() + 48);
+  return formatDateTime(deliveryDate.toString());
 }
 
 export default function SuccessPage() {
@@ -102,79 +121,143 @@ export default function SuccessPage() {
   };
 
   if (loading) {
-    return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-pulse flex flex-col items-center gap-4">
+          <Sparkles className="w-8 h-8 text-primary" />
+          <p className="text-muted-foreground">Loading your details...</p>
+        </div>
+      </div>
+    );
   }
 
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b">
-        <div className="max-w-3xl mx-auto px-4 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-8">
-            <Link href="/" className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
-              <ArrowLeft className="w-4 h-4" />
-              <span>Back to Home</span>
-            </Link>
-            <img src="/images/logo.png" alt="Grant Pathway" className="h-8" />
-          </div>
+        <div className="max-w-4xl mx-auto px-4 h-16 flex items-center">
+          <Link href={process.env.NEXT_PUBLIC_BASE_URL || '/'}>
+            <img src="/images/logo.png" alt="Grant Pathway" className="h-8 hover:opacity-90 transition-opacity" />
+          </Link>
         </div>
       </header>
 
       {/* Main Content */}
       <main className="pt-24 pb-16 px-4">
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           {user && businessDetails.length > 0 ? (
             <div className="space-y-8">
-              <div className="text-center">
-                <h1 className="text-3xl font-bold mb-2">Welcome, {user.email}!</h1>
-                <p className="text-lg text-muted-foreground">
-                  {businessDetailsId 
-                    ? "Here are your business details and report status."
-                    : "Here are all your business details and report statuses."}
+              {/* Success Message */}
+              <div className="text-center space-y-4">
+                <div className="inline-flex items-center gap-2 bg-green-50 text-green-700 px-4 py-1.5 rounded-full text-sm font-medium">
+                  <CheckCircle className="w-4 h-4" />
+                  <span>Successfully Submitted</span>
+                </div>
+                <h1 className="text-3xl font-bold">Your Grant Report is Being Generated</h1>
+                <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                  Our team is working on finding the perfect funding opportunities for {businessDetails[0].businessName}.
                 </p>
               </div>
 
-              {businessDetails.map((details, index) => (
-                <Card key={index} className="p-6">
-                  <div className="flex justify-between items-start mb-4">
-                    <h2 className="text-xl font-semibold">Business Details</h2>
-                    <div className="text-sm">
-                      <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-blue-100 text-blue-800">
-                        {details.status}
-                      </span>
+              {/* Status Card */}
+              <Card className="p-6 border-2 border-primary/20 bg-primary/5">
+                <div className="space-y-6">
+                  <div className="flex items-start gap-4">
+                    <Bot className="w-8 h-8 text-primary shrink-0 mt-1" />
+                    <div>
+                      <h3 className="font-semibold text-lg mb-2">Our AI is on the Case! 🕵️‍♂️</h3>
+                      <p className="text-muted-foreground">
+                        Our intelligent systems are scouring the depths of the internet, analyzing hundreds of funding sources to find the perfect matches for your business. It's like having a team of grant-hunting robots working just for you!
+                      </p>
                     </div>
                   </div>
-                  <dl className="grid gap-4">
+
+                  <div className="grid gap-6 md:grid-cols-2">
+                    <div className="flex items-start gap-4">
+                      <Clock className="w-6 h-6 text-primary shrink-0 mt-1" />
+                      <div>
+                        <h4 className="font-medium mb-1">Submitted</h4>
+                        <p className="text-sm text-muted-foreground">
+                          {formatDateTime(businessDetails[0].createdAt)}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-4">
+                      <Mail className="w-6 h-6 text-primary shrink-0 mt-1" />
+                      <div>
+                        <h4 className="font-medium mb-1">Delivery</h4>
+                        <p className="text-sm text-muted-foreground">
+                          Your report will be emailed to {user.email} within 48 hours
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4 pt-2 border-t">
+                    <div className="bg-background rounded-lg p-4 text-sm w-full">
+                      <p className="mb-2">
+                        <span className="font-medium">Questions or concerns?</span> We're here to help!
+                      </p>
+                      <p className="text-primary">
+                        Contact us at{' '}
+                        <a href="mailto:hello@grantpathway.com" className="underline hover:no-underline">
+                          hello@grantpathway.com
+                        </a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+
+              {/* Business Details Card */}
+              <Card className="p-6">
+                <div className="space-y-6">
+                  <div className="flex items-center justify-between">
+                    <h2 className="text-xl font-semibold">Your Business Details</h2>
+                    <div className="text-sm text-muted-foreground">
+                      We'll use these details to find your opportunities
+                    </div>
+                  </div>
+
+                  <dl className="grid gap-6 md:grid-cols-2">
                     <div>
                       <dt className="text-sm font-medium text-muted-foreground">Business Name</dt>
-                      <dd className="text-lg">{details.businessName}</dd>
+                      <dd className="text-lg mt-1">{businessDetails[0].businessName}</dd>
                     </div>
                     <div>
                       <dt className="text-sm font-medium text-muted-foreground">Location</dt>
-                      <dd>{details.city}, {details.province}</dd>
+                      <dd className="text-lg mt-1">{businessDetails[0].city}, {businessDetails[0].province}</dd>
                     </div>
                     <div>
                       <dt className="text-sm font-medium text-muted-foreground">Business Type</dt>
-                      <dd>{details.businessType}</dd>
+                      <dd className="text-lg mt-1">{businessDetails[0].businessType}</dd>
                     </div>
                     <div>
                       <dt className="text-sm font-medium text-muted-foreground">Industry</dt>
-                      <dd>{details.otherIndustry || details.industry}</dd>
+                      <dd className="text-lg mt-1">{businessDetails[0].otherIndustry || businessDetails[0].industry}</dd>
                     </div>
                     <div>
                       <dt className="text-sm font-medium text-muted-foreground">Business Stage</dt>
-                      <dd>{details.businessStage}</dd>
+                      <dd className="text-lg mt-1">{businessDetails[0].businessStage}</dd>
                     </div>
                     <div>
-                      <dt className="text-sm font-medium text-muted-foreground">Submitted On</dt>
-                      <dd>{new Date(details.createdAt).toLocaleDateString()}</dd>
+                      <dt className="text-sm font-medium text-muted-foreground">Start Date</dt>
+                      <dd className="text-lg mt-1">{new Date(businessDetails[0].startDate).toLocaleDateString()}</dd>
                     </div>
                   </dl>
-                </Card>
-              ))}
+                </div>
+              </Card>
 
-              <div className="text-center text-muted-foreground">
-                <p>Bookmark this page or check your email for updates about your report.</p>
+              {/* Next Steps */}
+              <div className="text-center space-y-4">
+                <div className="inline-flex items-center gap-2 text-muted-foreground">
+                  <Bookmark className="w-4 h-4" />
+                  <span>Bookmark this page for easy access to your report</span>
+                </div>
+                <p className="text-sm text-muted-foreground">
+                  We'll notify you via email when your personalized report is ready.
+                </p>
               </div>
             </div>
           ) : (
