@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
-import { ArrowRight, CheckCircle, Clock, FileText, Users, DollarSign, Sparkles, LightbulbIcon, Star, Lock, Menu, ClipboardList, Bot } from 'lucide-react';
+import { ArrowRight, CheckCircle, Clock, FileText, Users, DollarSign, Sparkles, LightbulbIcon, Star, Lock, Menu, ClipboardList, Bot, ArrowUpRight, Target, Trophy, Factory, Laptop, Leaf, Store } from 'lucide-react';
 import {
   Accordion,
   AccordionContent,
@@ -500,16 +500,22 @@ function DialogModalContent({ setParentOpen }: DialogModalContentProps) {
                           </div>
                           {opportunity.max_amount && (
                             <div className="space-y-1">
-                              <p className="text-xs font-medium text-gray-500">Maximum Amount</p>
-                              <p className={`text-sm font-semibold text-emerald-600 ${index > 0 ? "blur-sm select-none" : ""}`}>
+                              <p className="text-xs font-medium text-gray-500 flex items-center gap-1">
+                                <span className="text-primary">✨</span>
+                                <span>Maximum Amount</span>
+                              </p>
+                              <p className={`text-sm font-semibold text-emerald-600 ${index > 0 ? "" : ""}`}>
                                 {opportunity.max_amount}
                               </p>
                             </div>
                           )}
                           {opportunity.deadline && (
                             <div className="space-y-1">
-                              <p className="text-xs font-medium text-gray-500">Deadline</p>
-                              <p className={`text-sm text-gray-900 ${index > 0 ? "blur-sm select-none" : ""}`}>
+                              <p className="text-xs font-medium text-gray-500 flex items-center gap-1">
+                                <span className="text-primary">⏰</span>
+                                <span>Deadline</span>
+                              </p>
+                              <p className={`text-sm text-gray-900 ${index > 0 ? "" : ""}`}>
                                 {opportunity.deadline}
                               </p>
                             </div>
@@ -534,7 +540,7 @@ function DialogModalContent({ setParentOpen }: DialogModalContentProps) {
                               variant="outline"
                               onClick={() => setShowGetReportModal(true)}
                             >
-                              Unlock Full Details
+                              View Full Details
                               <Lock className="w-4 h-4 ml-2" />
                             </Button>
                           </div>
@@ -563,19 +569,19 @@ function DialogModalContent({ setParentOpen }: DialogModalContentProps) {
             <div className="space-y-4 mb-8">
               <div className="flex items-center gap-3 text-sm">
                 <CheckCircle className="text-primary w-5 h-5 shrink-0" />
-                <span>Access to all funding opportunities matching your business</span>
+                <span>Comprehensive list of grants, loans, and tax credits matched to your business</span>
               </div>
               <div className="flex items-center gap-3 text-sm">
                 <CheckCircle className="text-primary w-5 h-5 shrink-0" />
-                <span>Detailed eligibility criteria and application requirements</span>
+                <span>Deep research across federal, provincial, and private sector sources</span>
               </div>
               <div className="flex items-center gap-3 text-sm">
                 <CheckCircle className="text-primary w-5 h-5 shrink-0" />
-                <span>Direct application links and deadlines</span>
+                <span>Intelligent crawling to find the latest funding opportunities</span>
               </div>
               <div className="flex items-center gap-3 text-sm">
                 <CheckCircle className="text-primary w-5 h-5 shrink-0" />
-                <span>Expert recommendations and priority opportunities</span>
+                <span>Organized by category with clear explanations and direct links</span>
               </div>
             </div>
 
@@ -589,8 +595,8 @@ function DialogModalContent({ setParentOpen }: DialogModalContentProps) {
               </div>
             </div>
 
-            <div className="flex items-center justify-center gap-2 p-3 bg-gray-50 rounded-lg mb-8 text-sm text-muted-foreground">
-              <img src="/images/stripe.svg" alt="Stripe" className="h-5" />
+            <div className="flex items-center justify-center gap-3 p-4 bg-gray-50 rounded-lg mb-8 text-sm text-muted-foreground">
+              <img src="/images/stripe.svg" alt="Stripe" className="h-7" />
               <span>Your purchase is protected by Stripe secure payment</span>
             </div>
 
@@ -1030,25 +1036,157 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Testimonials */}
-        <section id="testimonials" className="py-20 px-4 bg-background">
+        {/* Funding Landscape Section */}
+        <section className="py-20 px-4 bg-background">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Success Stories</h2>
-            <div className="grid md:grid-cols-3 gap-8">
-              {testimonials.map((testimonial, index) => (
-                <Card key={index} className="p-6">
-                  <p className="mb-4 text-muted-foreground">{testimonial.content}</p>
-                  <div>
-                    <p className="font-semibold">{testimonial.name}</p>
-                    <p className="text-sm text-muted-foreground">{testimonial.role}</p>
-                    <p className="text-sm text-primary">{testimonial.company}</p>
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Billions in Funding for Canadian Businesses</h2>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                Non-repayable grants and subsidies can help you grow, innovate, and create jobs. But are you tapping into them?
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-12 mb-16">
+              <div className="space-y-8">
+                <div>
+                  <h3 className="text-2xl font-semibold mb-4">Billions Available Every Year</h3>
+                  <div className="space-y-6">
+                    <div className="flex items-start gap-4">
+                      <div className="bg-primary/10 p-2 rounded-lg">
+                        <DollarSign className="w-6 h-6 text-primary" />
+                      </div>
+                      <div>
+                        <h4 className="font-medium mb-1">$37B+ in Annual Funding</h4>
+                        <p className="text-muted-foreground">
+                          Federal and provincial programs collectively offer over $37 billion in business support each year.
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-4">
+                      <div className="bg-primary/10 p-2 rounded-lg">
+                        <ArrowUpRight className="w-6 h-6 text-primary" />
+                      </div>
+                      <div>
+                        <h4 className="font-medium mb-1">Growing Opportunities</h4>
+                        <p className="text-muted-foreground">
+                          Many new initiatives focus on innovation, digital adoption, and sustainability—covering a wide range of industries.
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                </Card>
-              ))}
+                </div>
+
+                <div>
+                  <h3 className="text-2xl font-semibold mb-4">Success Rates for Well-Prepared Applicants</h3>
+                  <div className="space-y-6">
+                    <div className="flex items-start gap-4">
+                      <div className="bg-primary/10 p-2 rounded-lg">
+                        <Target className="w-6 h-6 text-primary" />
+                      </div>
+                      <div>
+                        <h4 className="font-medium mb-1">Strong Approval Odds</h4>
+                        <p className="text-muted-foreground">
+                          Certain funding programs see approval rates around 25%. With a solid application, your chances rise.
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-4">
+                      <div className="bg-primary/10 p-2 rounded-lg">
+                        <Trophy className="w-6 h-6 text-primary" />
+                      </div>
+                      <div>
+                        <h4 className="font-medium mb-1">Competitive but Doable</h4>
+                        <p className="text-muted-foreground">
+                          The key is knowing where to apply and aligning your application with what funders want.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-semibold mb-4">Who's Getting Funded?</h3>
+                <div className="grid gap-4">
+                  <Card className="p-4">
+                    <div className="flex items-start gap-4">
+                      <div className="bg-primary/10 p-2 rounded-lg">
+                        <Factory className="w-6 h-6 text-primary" />
+                      </div>
+                      <div>
+                        <h4 className="font-medium mb-1">Manufacturing & Agriculture</h4>
+                        <p className="text-muted-foreground">Capital-intensive sectors often leverage grants.</p>
+                      </div>
+                    </div>
+                  </Card>
+                  <Card className="p-4">
+                    <div className="flex items-start gap-4">
+                      <div className="bg-primary/10 p-2 rounded-lg">
+                        <Laptop className="w-6 h-6 text-primary" />
+                      </div>
+                      <div>
+                        <h4 className="font-medium mb-1">Tech & Innovation</h4>
+                        <p className="text-muted-foreground">Startups and digital-focused ventures see increasing support.</p>
+                      </div>
+                    </div>
+                  </Card>
+                  <Card className="p-4">
+                    <div className="flex items-start gap-4">
+                      <div className="bg-primary/10 p-2 rounded-lg">
+                        <Leaf className="w-6 h-6 text-primary" />
+                      </div>
+                      <div>
+                        <h4 className="font-medium mb-1">Sustainability & Clean Energy</h4>
+                        <p className="text-muted-foreground">Green initiatives remain a top funding priority.</p>
+                      </div>
+                    </div>
+                  </Card>
+                  <Card className="p-4">
+                    <div className="flex items-start gap-4">
+                      <div className="bg-primary/10 p-2 rounded-lg">
+                        <Store className="w-6 h-6 text-primary" />
+                      </div>
+                      <div>
+                        <h4 className="font-medium mb-1">Other SMEs</h4>
+                        <p className="text-muted-foreground">Many small businesses find grants when they match government goals.</p>
+                      </div>
+                    </div>
+                  </Card>
+                </div>
+              </div>
+            </div>
+
+            {/* Why Grant Pathway */}
+            <div className="max-w-3xl mx-auto text-center">
+              <h3 className="text-2xl font-semibold mb-6">Why Grant Pathway?</h3>
+              <div className="bg-primary/5 rounded-2xl p-8 mb-8">
+                <p className="text-lg text-muted-foreground italic mb-6">
+                  "I built this tool because I was spending countless hours hunting for funding for my own businesses. Now, Grant Pathway does the heavy lifting—so you can focus on running (and growing) your business instead of digging through hundreds of websites."
+                </p>
+                <div className="flex items-center justify-center gap-4">
+                  <div className="w-12 h-12 rounded-full overflow-hidden bg-primary/10">
+                    <img src="/images/jay.png" alt="Jay" className="w-full h-full object-cover" />
+                  </div>
+                  <div className="text-left">
+                    <p className="font-medium">Jay</p>
+                    <p className="text-sm text-muted-foreground">Founder, Grant Pathway</p>
+                  </div>
+                </div>
+              </div>
+              <p className="text-lg mb-8">
+                Discover the programs you qualify for. Grant Pathway helps you navigate the funding landscape with ease.
+              </p>
+              <Link href="/business-details">
+                <Button size="lg" className="gap-2">
+                  Get Your Grant Report
+                  <ArrowRight className="w-4 h-4" />
+                </Button>
+              </Link>
             </div>
           </div>
         </section>
 
+        
         {/* FAQ */}
         <section className="py-20 px-4 bg-background">
           <div className="max-w-3xl mx-auto">

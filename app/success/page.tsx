@@ -50,7 +50,7 @@ function getDeliveryDateTime(submissionDate: string) {
   return formatDateTime(deliveryDate.toString());
 }
 
-export default function SuccessPage() {
+export default async function SuccessPage() {
   const searchParams = useSearchParams();
   const token = searchParams.get('token');
   const businessDetailsId = searchParams.get('bid');
@@ -131,6 +131,16 @@ export default function SuccessPage() {
     );
   }
 
+  if (!businessDetails || businessDetails.length === 0) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-muted-foreground">Loading business details...</p>
+      </div>
+    );
+  }
+
+  const details = businessDetails[0];
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -155,7 +165,7 @@ export default function SuccessPage() {
                 </div>
                 <h1 className="text-3xl font-bold">Your Grant Report is Being Generated</h1>
                 <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                  Our team is working on finding the perfect funding opportunities for {businessDetails[0].businessName}.
+                  Our team is working on finding the perfect funding opportunities for {details.businessName}.
                 </p>
               </div>
 
@@ -178,7 +188,7 @@ export default function SuccessPage() {
                       <div>
                         <h4 className="font-medium mb-1">Submitted</h4>
                         <p className="text-sm text-muted-foreground">
-                          {formatDateTime(businessDetails[0].createdAt)}
+                          {formatDateTime(details.createdAt)}
                         </p>
                       </div>
                     </div>
@@ -223,28 +233,47 @@ export default function SuccessPage() {
                   <dl className="grid gap-6 md:grid-cols-2">
                     <div>
                       <dt className="text-sm font-medium text-muted-foreground">Business Name</dt>
-                      <dd className="text-lg mt-1">{businessDetails[0].businessName}</dd>
+                      <dd className="text-lg mt-1">{details.businessName}</dd>
                     </div>
                     <div>
                       <dt className="text-sm font-medium text-muted-foreground">Location</dt>
-                      <dd className="text-lg mt-1">{businessDetails[0].city}, {businessDetails[0].province}</dd>
+                      <dd className="text-lg mt-1">{details.city}, {details.province}</dd>
                     </div>
                     <div>
                       <dt className="text-sm font-medium text-muted-foreground">Business Type</dt>
-                      <dd className="text-lg mt-1">{businessDetails[0].businessType}</dd>
+                      <dd className="text-lg mt-1 capitalize">{details.businessType}</dd>
                     </div>
                     <div>
                       <dt className="text-sm font-medium text-muted-foreground">Industry</dt>
-                      <dd className="text-lg mt-1">{businessDetails[0].otherIndustry || businessDetails[0].industry}</dd>
+                      <dd className="text-lg mt-1 capitalize">{details.otherIndustry || details.industry}</dd>
                     </div>
                     <div>
                       <dt className="text-sm font-medium text-muted-foreground">Business Stage</dt>
-                      <dd className="text-lg mt-1">{businessDetails[0].businessStage}</dd>
+                      <dd className="text-lg mt-1 capitalize">{details.businessStage}</dd>
                     </div>
                     <div>
                       <dt className="text-sm font-medium text-muted-foreground">Start Date</dt>
-                      <dd className="text-lg mt-1">{new Date(businessDetails[0].startDate).toLocaleDateString()}</dd>
+                      <dd className="text-lg mt-1">{new Date(details.startDate).toLocaleDateString()}</dd>
                     </div>
+                    <div>
+                      <dt className="text-sm font-medium text-muted-foreground">Gender</dt>
+                      <dd className="text-lg mt-1 capitalize">{details.gender}</dd>
+                    </div>
+                    <div>
+                      <dt className="text-sm font-medium text-muted-foreground">Age Range</dt>
+                      <dd className="text-lg mt-1">{details.ageRange}</dd>
+                    </div>
+                    {details.underrepresentedGroups && details.underrepresentedGroups.length > 0 && (
+                      <div className="md:col-span-2">
+                        <dt className="text-sm font-medium text-muted-foreground">Underrepresented Groups</dt>
+                        <dd className="text-lg mt-1 capitalize">
+                          {details.underrepresentedGroups.join(", ")}
+                          {details.otherUnderrepresentedGroup && (
+                            <>, {details.otherUnderrepresentedGroup}</>
+                          )}
+                        </dd>
+                      </div>
+                    )}
                   </dl>
                 </div>
               </Card>

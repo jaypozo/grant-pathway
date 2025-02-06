@@ -30,7 +30,7 @@ const formSchema = z.object({
   startDate: z.string().min(1, "Start date is required"),
   gender: z.string().min(1, "Gender is required"),
   ageRange: z.string().min(1, "Age range is required"),
-  underrepresentedGroups: z.array(z.string()).optional(),
+  underrepresentedGroups: z.array(z.string()).default([]),
   otherUnderrepresentedGroup: z.string().optional()
 });
 
@@ -398,7 +398,7 @@ export default function BusinessDetailsPage() {
               <Button 
                 type="submit" 
                 size="lg" 
-                disabled={form.formState.isSubmitting || !form.formState.isValid}
+                disabled={form.formState.isSubmitting}
               >
                 {form.formState.isSubmitting ? "Processing..." : "Continue to Payment"}
               </Button>
