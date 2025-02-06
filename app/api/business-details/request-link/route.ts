@@ -43,18 +43,15 @@ export async function POST(request: Request) {
       }
     );
 
-    const reportLink = `${process.env.NEXT_PUBLIC_BASE_URL}/success?token=${token}`;
+    const link= `${process.env.NEXT_PUBLIC_BASE_URL}/success?token=${token}`;
     
     // Send magic link email using template
     await sendTemplateEmail({
       to: email,
       subject: 'Your Grant Pathway Report Access Link',
-      template: 'report payment success',
+      template: 'magic link request',
       variables: {
-        businessName: businessDetails.businessName,
-        location: `${businessDetails.city}, ${businessDetails.province}`,
-        industry: businessDetails.otherIndustry || businessDetails.industry,
-        reportLink
+        link: link
       }
     });
 
