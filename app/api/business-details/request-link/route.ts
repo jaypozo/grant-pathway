@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import clientPromise from '@/lib/mongodb';
 import crypto from 'crypto';
+import { sendTemplateEmail } from '@/lib/mailgun';
 
 export const dynamic = 'force-dynamic';
 
@@ -42,12 +43,20 @@ export async function POST(request: Request) {
       }
     );
 
-    // TODO: Send email with magic link
-    // For now, just return success
-    // In production, integrate with your email service to send the magic link
-
-    const magicLink = `${process.env.NEXT_PUBLIC_BASE_URL}/success?token=${token}`;
-    console.log('Magic link generated:', magicLink);
+    const reportLink = `${process.env.NEXT_PUBLIC_BASE_URL}/success?token=${token}`;
+    
+    // Send magic link email using template
+    await sendTemplateEmail({
+      to: email,
+      subject: 'Your Grant Pathway Report Access Link',
+      template: 'report payment success',
+      variables: {
+        businessName: businessDetails.businessName,
+        location: `${businessDetails.city}, ${businessDetails.province}`,
+        industry: businessDetails.otherIndustry || businessDetails.industry,
+        reportLink
+      }
+    });
 
     return NextResponse.json({ 
       success: true,

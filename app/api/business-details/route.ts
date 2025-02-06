@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import clientPromise from '@/lib/mongodb';
 import Stripe from 'stripe';
 import crypto from 'crypto';
+import { sendTemplateEmail } from '@/lib/mailgun';
 
 export const dynamic = 'force-dynamic';
 
@@ -70,6 +71,20 @@ export async function POST(request: Request) {
     if (!session.url) {
       throw new Error('Failed to create checkout session URL');
     }
+
+    // Send confirmation email using template
+    const reportLink = `${process.env.NEXT_PUBLIC_BASE_URL}/success?token=${token}`;
+    await sendTemplateEmail({
+      to: data.email,
+      subject: 'Welcome to Grant Pathway - Payment Confirmation',
+      template: 'report payment success',
+      variables: {
+        businessName: data.businessName,
+        location: `${data.city}, ${data.province}`,
+        industry: data.otherIndustry || data.industry,
+        reportLink
+      }
+    });
 
     return NextResponse.json({ 
       success: true, 
