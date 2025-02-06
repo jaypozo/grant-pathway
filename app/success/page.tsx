@@ -126,7 +126,7 @@ export default function SuccessPage() {
           {user && businessDetails.length > 0 ? (
             <div className="space-y-8">
               <div className="text-center">
-                <h1 className="text-3xl font-bold mb-2">Welcome Back, {user.email}!</h1>
+                <h1 className="text-3xl font-bold mb-2">Welcome, {user.email}!</h1>
                 <p className="text-lg text-muted-foreground">
                   {businessDetailsId 
                     ? "Here are your business details and report status."

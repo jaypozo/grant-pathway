@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
-import { ArrowRight, CheckCircle, Clock, FileText, Users, DollarSign, Sparkles, LightbulbIcon, Star, Lock } from 'lucide-react';
+import { ArrowRight, CheckCircle, Clock, FileText, Users, DollarSign, Sparkles, LightbulbIcon, Star, Lock, Menu } from 'lucide-react';
 import {
   Accordion,
   AccordionContent,
@@ -40,6 +40,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import Link from 'next/link';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 
 const formSchema = z.object({
   businessName: z.string().min(1, "Business name is required"),
@@ -729,7 +730,9 @@ export default function Home() {
               <img src="/images/logo.png" alt="Grant Pathway" className="h-8" />
             </a>
           </div>
-          <nav className="flex items-center gap-8">
+          
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center gap-8">
             <a 
               href="#testimonials" 
               className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
@@ -746,6 +749,38 @@ export default function Home() {
               <Button variant="outline">Get Started</Button>
             </Link>
           </nav>
+
+          {/* Mobile Navigation */}
+          <Sheet>
+            <SheetTrigger asChild className="md:hidden">
+              <Button variant="ghost" size="icon">
+                <Menu className="h-6 w-6" />
+                <span className="sr-only">Toggle menu</span>
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right">
+              <SheetHeader>
+                <SheetTitle>Menu</SheetTitle>
+              </SheetHeader>
+              <div className="flex flex-col gap-4 mt-6">
+                <a 
+                  href="#testimonials" 
+                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  Testimonials
+                </a>
+                <a 
+                  href="#pricing" 
+                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  Pricing
+                </a>
+                <Link href="/business-details">
+                  <Button className="w-full">Get Started</Button>
+                </Link>
+              </div>
+            </SheetContent>
+          </Sheet>
         </div>
       </header>
 
@@ -760,23 +795,23 @@ export default function Home() {
             <div className="flex flex-col items-center text-center">
               <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 mb-8">
                 <Sparkles className="w-4 h-4" />
-                <span className="text-sm font-medium">Trusted by 500+ Canadian Businesses</span>
+                <span className="text-sm font-medium">Built by a Small Business Owner for Small Business Owners</span>
               </div>
               
-              <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                <div className="inline-block mr-3">
+              <h1 className="text-2xl md:text-5xl font-bold mb-6">
+                <span>
+                Built For My Own Business <br />
+                </span>
+                <div className="inline-block mt-2 ml-3 mb-4">
                   <span className="relative">
-                    Unlock
+                    Now It's Yours
                     <div className="absolute -bottom-2 left-0 right-0 h-3 bg-[#57ad0b] -skew-x-6 transform" />
                   </span>
                 </div>
-                <span>
-                  Your Business's Grant Potential
-                </span>
               </h1>
 
               <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl">
-                Get a personalized report of all grants your Canadian business qualifies for, delivered within 48 hours.
+                Get a personalized, deeply researched report of funding opportunities—grants, loans, and tax credits—tailored to your Canadian business.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 items-center justify-center mb-12">
@@ -793,10 +828,10 @@ export default function Home() {
 
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto text-center">
                 {[
-                  { label: 'Success Rate', value: '87%' },
-                  { label: 'Average Grant Size', value: '$75K' },
-                  { label: 'Grants Found', value: '500+' },
-                  { label: 'Happy Clients', value: '1000+' },
+                  { label: 'All Provinces & Territories', value: '13 Regions' },
+                  { label: 'Personalized Report Delivery', value: '48 hrs' },
+                  { label: 'One-time Fee', value: '$100' },
+                  { label: 'Hours Saved', value: 'Countless' },
                 ].map((stat, index) => (
                   <div key={index} className="space-y-2">
                     <div className="text-3xl font-bold text-primary">{stat.value}</div>
@@ -808,12 +843,42 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Meet Jay Section */}
+        <section className="py-16 bg-background border-t border-b">
+          <div className="max-w-4xl mx-auto px-4">
+            <div className="flex flex-col md:flex-row items-center gap-8">
+              <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden flex-shrink-0 bg-primary/10 ring-4 ring-primary/20">
+                <img 
+                  src="/images/jay.png" 
+                  alt="Jay, founder of Grant Pathway" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="flex-1 text-center md:text-left">
+                <h2 className="text-2xl font-bold mb-4">Meet Jay</h2>
+                <p className="text-lg text-muted-foreground mb-6">
+                  Finding funding takes time—you either comb the internet or pay someone to do it. I’ve done it myself, and now that I’m starting something new, I built a tool that does the searching for you. Friends—whether running something successful or figuring out their next move—have used it to find funding they would’ve missed. If that sounds useful, give it a try.
+                </p>
+                <Link href="/about">
+                  <Button variant="outline" className="gap-2">
+                    Learn More About My Journey
+                    <ArrowRight className="w-4 h-4" />
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Business Owners Gallery */}
         <section className="py-16 bg-background overflow-hidden">
           <div className="max-w-6xl mx-auto px-4 mb-8">
             <h2 className="text-2xl md:text-3xl text-center font-medium text-muted-foreground">
-              Join Thousands of Canadian Businesses We've Helped
+              Ideal for a Variety of Small Businesses
             </h2>
+            <p className="text-sm text-muted-foreground text-center mt-1">
+              Whether you're a local cafe, tech startup, or retail store, you'll find funding opportunities that match your business.
+            </p>
           </div>
           <Marquee
             gradient={false}
@@ -933,7 +998,7 @@ export default function Home() {
                     </div>
                     <div className="flex-1">
                       <blockquote className="text-lg mb-4 italic">
-                        "The sample report convinced me to try Grant Pathway. We secured two grants worth $175,000 using their recommendations. The report paid for itself many times over."
+                        "The sample report opened my eyes to several grant opportunities I hadn't seen before—even though I'd been using another service. It was clear, well-organized, and saved me hours of research. I'm much more confident now about finding funding for my day spa.""
                       </blockquote>
                       <div>
                         <p className="font-semibold">Winnie Cheung-Pozo</p>
