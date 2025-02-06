@@ -953,15 +953,12 @@ export default function Home() {
                   <div className="bg-white/50 backdrop-blur-sm rounded-2xl p-8">
                     <ul className="space-y-4">
                       {[
-                        'Comprehensive list of matching grants and funding',
-                        'Organized by category (tax rebates, educational grants, etc.)',
-                        'Real-time search of latest opportunities',
-                        'Custom-matched to your business profile',
-                        'Direct links to official information sources',
-                        'Priority recommendations based on your eligibility',
-                        'Funding amounts and potential matches',
-                        'Clear explanations of each opportunity',
-                        'Need help applying? We can connect you with experts for guidance.'
+                        'Personalized list of funding opportunities tailored to your business',
+                        'Grants, tax rebates, and subsidies categorized for easy browsing',
+                        'Continuously updated with the latest available programs',
+                        'Direct links to official sources for accurate details',
+                        'Highlights top programs that best fit your business',
+                        'Delivered within 48 hours'
                       ].map((item, index) => (
                         <li key={index} className="flex items-center gap-3">
                           <div className="bg-[#57ad0b] rounded-full p-1">
@@ -1225,13 +1222,13 @@ export default function Home() {
 
                 <div className="space-y-4 mb-8">
                   {[
-                    'Real-time analysis of 500+ funding sources',
-                    'AI-powered custom matching to your business',
-                    'Latest grants and opportunities',
-                    'Categorized by funding type',
-                    'Links to official information sources',
-                    'Priority funding recommendations',
-                    'Delivered within 48 hours',
+                    'Personalized list of funding opportunities tailored to your business',
+                    'Grants, tax rebates, and subsidies categorized for easy browsing',
+                    'Continuously updated with the latest available programs',
+                    'Direct links to official sources for accurate details',
+                    'Clear explanations of eligibility, amounts, and application steps',
+                    'Highlights top programs that best fit your business',
+                    'Delivered within 48 hours'
                   ].map((feature, index) => (
                     <div key={index} className="flex items-start gap-3">
                       <div className="bg-[#57ad0b] rounded-full p-1">
