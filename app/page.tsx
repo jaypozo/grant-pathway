@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
-import { ArrowRight, CheckCircle, Clock, FileText, Users, DollarSign, Sparkles, LightbulbIcon, Star, Lock, Menu } from 'lucide-react';
+import { ArrowRight, CheckCircle, Clock, FileText, Users, DollarSign, Sparkles, LightbulbIcon, Star, Lock, Menu, ClipboardList, Bot } from 'lucide-react';
 import {
   Accordion,
   AccordionContent,
@@ -857,7 +857,7 @@ export default function Home() {
               <div className="flex-1 text-center md:text-left">
                 <h2 className="text-2xl font-bold mb-4">Meet Jay</h2>
                 <p className="text-lg text-muted-foreground mb-6">
-                  Finding funding takes time—you either comb the internet or pay someone to do it. I’ve done it myself, and now that I’m starting something new, I built a tool that does the searching for you. Friends—whether running something successful or figuring out their next move—have used it to find funding they would’ve missed. If that sounds useful, give it a try.
+                  Finding funding takes time—you either comb the internet or pay someone to do it. I've done it myself, and now that I'm starting something new, I built a tool that does the searching for you. Friends—whether running something successful or figuring out their next move—have used it to find funding they would've missed. If that sounds useful, give it a try.
                 </p>
                 <Link target="_blank" href="https://www.linkedin.com/in/jaypozo/">
                   <Button variant="outline" className="gap-2">
@@ -909,24 +909,24 @@ export default function Home() {
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">How It Works</h2>
             <div className="grid md:grid-cols-3 gap-8">
               <Card className="p-6 text-center">
+                <ClipboardList className="w-12 h-12 mx-auto mb-4 text-primary" />
+                <h3 className="text-xl font-semibold mb-2">1. Provide Basic Details</h3>
+                <p className="text-muted-foreground">
+                  Tell me about your business—location, industry, and a few specifics.
+                </p>
+              </Card>
+              <Card className="p-6 text-center">
+                <Bot className="w-12 h-12 mx-auto mb-4 text-primary" />
+                <h3 className="text-xl font-semibold mb-2">2. AI-Powered Analysis</h3>
+                <p className="text-muted-foreground">
+                  My AI system finds the latest opportunities in real-time, discovering funding perfectly matched to your unique business.
+                </p>
+              </Card>
+              <Card className="p-6 text-center">
                 <FileText className="w-12 h-12 mx-auto mb-4 text-primary" />
-                <h3 className="text-xl font-semibold mb-2">1. Share Details</h3>
+                <h3 className="text-xl font-semibold mb-2">3. Receive Your Report</h3>
                 <p className="text-muted-foreground">
-                  Provide information about your business through our secure form
-                </p>
-              </Card>
-              <Card className="p-6 text-center">
-                <Users className="w-12 h-12 mx-auto mb-4 text-primary" />
-                <h3 className="text-xl font-semibold mb-2">2. Expert Analysis</h3>
-                <p className="text-muted-foreground">
-                  Our team analyzes your eligibility across hundreds of grants
-                </p>
-              </Card>
-              <Card className="p-6 text-center">
-                <Clock className="w-12 h-12 mx-auto mb-4 text-primary" />
-                <h3 className="text-xl font-semibold mb-2">3. Get Your Report</h3>
-                <p className="text-muted-foreground">
-                  Receive your personalized report within 48 hours
+                  Within 48 hours, you'll have a personalized list of viable grants and loans.
                 </p>
               </Card>
             </div>
@@ -947,12 +947,15 @@ export default function Home() {
                   <div className="bg-white/50 backdrop-blur-sm rounded-2xl p-8">
                     <ul className="space-y-4">
                       {[
-                        'Comprehensive list of matching grants',
-                        'Detailed eligibility criteria',
-                        'Application deadlines and requirements',
-                        'Funding amounts and terms',
-                        'Direct application links',
-                        'Priority recommendations',
+                        'Comprehensive list of matching grants and funding',
+                        'Organized by category (tax rebates, educational grants, etc.)',
+                        'Real-time search of latest opportunities',
+                        'Custom-matched to your business profile',
+                        'Direct links to official information sources',
+                        'Priority recommendations based on your eligibility',
+                        'Funding amounts and potential matches',
+                        'Clear explanations of each opportunity',
+                        'Need help applying? We can connect you with experts for guidance.'
                       ].map((item, index) => (
                         <li key={index} className="flex items-center gap-3">
                           <div className="bg-[#57ad0b] rounded-full p-1">
@@ -982,9 +985,9 @@ export default function Home() {
             <div className="relative">
               <div className="absolute inset-0 bg-grid-black/5 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
               <div className="relative">
-                <h2 className="text-3xl md:text-4xl font-bold mb-6">See a Sample Report</h2>
+                <h2 className="text-3xl md:text-4xl font-bold mb-6">Peek at a real example</h2>
                 <p className="text-xl text-muted-foreground mb-8">
-                  View the actual grant report we prepared for Tao Day Spa in Steveston, British Columbia
+                  Check out the actual report I prepared for Tao Day Spa in Steveston, BC:
                 </p>
                 
                 <Card className="p-8 mb-8 bg-white/50 backdrop-blur-sm border-2 border-[#57ad0b]/20">
@@ -998,7 +1001,7 @@ export default function Home() {
                     </div>
                     <div className="flex-1">
                       <blockquote className="text-lg mb-4 italic">
-                        "The sample report opened my eyes to several grant opportunities I hadn't seen before—even though I'd been using another service. It was clear, well-organized, and saved me hours of research. I'm much more confident now about finding funding for my day spa.""
+                        "The report opened my eyes to several grant opportunities I hadn't seen before—even though I'd been using another service. It was clear, well-organized, and saved me hours of research. I'm much more confident now about finding funding for my day spa.""
                       </blockquote>
                       <div>
                         <p className="font-semibold">Winnie Cheung-Pozo</p>
@@ -1046,21 +1049,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Additional Services */}
-        <section className="py-20 px-4 bg-primary/5">
-          <div className="max-w-6xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-12">Need More Support?</h2>
-            <Card className="p-8 max-w-2xl mx-auto">
-              <DollarSign className="w-12 h-12 mx-auto mb-4 text-primary" />
-              <h3 className="text-2xl font-semibold mb-4">Grant Application Support</h3>
-              <p className="text-muted-foreground mb-6">
-                Get expert help with your grant applications from our network of experienced professionals
-              </p>
-              <Button variant="outline">Learn More</Button>
-            </Card>
-          </div>
-        </section>
-
         {/* FAQ */}
         <section className="py-20 px-4 bg-background">
           <div className="max-w-3xl mx-auto">
@@ -1099,15 +1087,18 @@ export default function Home() {
 
                 <div className="space-y-4 mb-8">
                   {[
-                    'Comprehensive analysis of 500+ funding sources',
-                    'Customized grant recommendations',
-                    'Detailed eligibility criteria',
-                    'Application deadlines and requirements',
-                    'Direct application links',
+                    'Real-time analysis of 500+ funding sources',
+                    'AI-powered custom matching to your business',
+                    'Latest grants and opportunities',
+                    'Categorized by funding type',
+                    'Links to official information sources',
+                    'Priority funding recommendations',
                     'Delivered within 48 hours',
                   ].map((feature, index) => (
                     <div key={index} className="flex items-start gap-3">
-                      <CheckCircle className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                      <div className="bg-[#57ad0b] rounded-full p-1">
+                        <CheckCircle className="text-white w-4 h-4 shrink-0" />
+                      </div>
                       <span>{feature}</span>
                     </div>
                   ))}
