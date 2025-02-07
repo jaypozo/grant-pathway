@@ -41,6 +41,7 @@ import {
 } from "@/components/ui/tooltip";
 import Link from 'next/link';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { trackEvent } from '@/lib/analytics';
 
 const formSchema = z.object({
   businessName: z.string().min(1, "Business name is required"),
@@ -411,6 +412,12 @@ function DialogModalContent({ setParentOpen }: DialogModalContentProps) {
     }
   }
 
+  // Track when the "Get Report" modal is opened
+  const handleGetReportClick = () => {
+    trackEvent('view_get_report_modal');
+    setShowGetReportModal(true);
+  };
+
   return (
     <div className="h-full overflow-y-auto">
       <div className="w-full bg-gray-50 min-h-full">
@@ -472,7 +479,7 @@ function DialogModalContent({ setParentOpen }: DialogModalContentProps) {
                                     variant="ghost" 
                                     size="icon" 
                                     className="shrink-0 text-gray-400 hover:text-primary hover:bg-primary/10"
-                                    onClick={() => setShowGetReportModal(true)}
+                                    onClick={handleGetReportClick}
                                   >
                                     <Lock className="w-4 h-4" />
                                   </Button>
@@ -538,7 +545,7 @@ function DialogModalContent({ setParentOpen }: DialogModalContentProps) {
                             <Button 
                               className="w-full" 
                               variant="outline"
-                              onClick={() => setShowGetReportModal(true)}
+                              onClick={handleGetReportClick}
                             >
                               View Full Details
                               <Lock className="w-4 h-4 ml-2" />
@@ -704,6 +711,12 @@ export default function Home() {
       label: "Bakeries"
     }
   ];
+
+  // Track sample report view
+  const handleSampleReportClick = () => {
+    trackEvent('view_sample_report');
+    setShowSampleReport(true);
+  };
 
   return (
     <div className="min-h-screen">
@@ -1000,6 +1013,7 @@ export default function Home() {
                     <Button 
                       size="lg" 
                       className="gap-2 bg-[#57ad0b] hover:bg-[#57ad0b]/90 text-white"
+                      onClick={handleSampleReportClick}
                     >
                       <FileText className="w-4 h-4" />
                       View Sample Report
@@ -1268,7 +1282,7 @@ export default function Home() {
               </div>
             </div>
             <div className="mt-8 pt-8 border-t border-primary-foreground/20 text-center text-primary-foreground/60">
-              <p>&copy; 2024 Grant Pathway. All rights reserved.</p>
+              <p>&copy; {new Date().getFullYear()} Grant Pathway. All rights reserved.</p>
             </div>
           </div>
         </footer>

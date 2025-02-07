@@ -11,12 +11,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
+import { trackEvent } from '@/lib/analytics';
 
 const formSchema = z.object({
   businessName: z.string().min(1, "Business name is required"),
@@ -48,6 +49,11 @@ export default function BusinessDetailsPage() {
     },
   });
 
+  useEffect(() => {
+    // Track page visit
+    trackEvent('visit_business_details');
+  }, []);
+
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     try {
       const response = await fetch('/api/business-details', {
@@ -63,6 +69,13 @@ export default function BusinessDetailsPage() {
       if (!response.ok) {
         throw new Error(result.error || 'Failed to save business details');
       }
+
+      // Track successful form submission
+      trackEvent('submit_business_details', {
+        business_type: data.businessType,
+        industry: data.industry,
+        province: data.province
+      });
 
       // Redirect to Stripe checkout
       window.location.href = result.redirectUrl;
