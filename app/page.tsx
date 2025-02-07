@@ -783,7 +783,7 @@ export default function Home() {
                 <span className="text-sm font-medium">Built by a Small Business Owner for Small Business Owners</span>
               </div>
               
-              <h1 className="text-2xl md:text-5xl font-bold mb-6">
+              <h1 className="text-4xl md:text-5xl font-bold mb-6">
                 <span>
                 Built For My Own Business <br />
                 </span>
