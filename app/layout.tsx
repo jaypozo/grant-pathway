@@ -6,11 +6,11 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Grant Pathway - Find Grants for Your Canadian Business',
-  description: 'Discover grants and funding opportunities for your Canadian business. Get a personalized report of grants you qualify for, delivered within 48 hours. Trusted by 500+ businesses.',
+  description: 'Discover grants and funding opportunities for your Canadian business. Get a personalized report of grants you qualify for, delivered within 48 hours.',
   openGraph: {
     type: 'website',
     title: 'Grant Pathway - Find Grants for Your Canadian Business',
-    description: 'Discover grants and funding opportunities for your Canadian business. Get a personalized report of grants you qualify for, delivered within 48 hours. Trusted by 500+ businesses.',
+    description: 'Discover grants and funding opportunities for your Canadian business. Get a personalized report of grants you qualify for, delivered within 48 hours.',
     url: 'https://grantpathway.com',
     siteName: 'Grant Pathway',
     images: [
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Grant Pathway - Find Grants for Your Canadian Business',
-    description: 'Discover grants and funding opportunities for your Canadian business. Get a personalized report of grants you qualify for, delivered within 48 hours. Trusted by 500+ businesses.',
+    description: 'Discover grants and funding opportunities for your Canadian business. Get a personalized report of grants you qualify for, delivered within 48 hours.',
     images: ['/images/og-image.png'],
   },
   keywords: [

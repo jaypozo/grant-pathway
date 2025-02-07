@@ -573,7 +573,7 @@ function DialogModalContent({ setParentOpen }: DialogModalContentProps) {
               </div>
               <div className="flex items-center gap-3 text-sm">
                 <CheckCircle className="text-primary w-5 h-5 shrink-0" />
-                <span>Deep research across federal, provincial, and private sector sources</span>
+                <span>Deep research across federal, provincial, and private sectors</span>
               </div>
               <div className="flex items-center gap-3 text-sm">
                 <CheckCircle className="text-primary w-5 h-5 shrink-0" />
@@ -641,7 +641,7 @@ export default function Home() {
   const faqs = [
     {
       question: 'How detailed is the grant report?',
-      answer: 'Our comprehensive report includes 30 funding opportunities with detailed grant descriptions, eligibility criteria, application deadlines, funding amounts, and direct links to apply. We analyze over 500 funding sources across federal, provincial, and private sectors to find the best matches for your business.',
+      answer: 'Our comprehensive report includes 30 funding opportunities with detailed grant descriptions, eligibility criteria, application deadlines, funding amounts, and direct links to apply. We conduct deep research across federal, provincial, and private sectors using intelligent crawling to find the best matches for your business.',
     },
     {
       question: 'What information do you need from my business?',
