@@ -50,7 +50,7 @@ function getDeliveryDateTime(submissionDate: string) {
   return formatDateTime(deliveryDate.toString());
 }
 
-export default async function SuccessPage() {
+export default function SuccessPage() {
   const searchParams = useSearchParams();
   const token = searchParams.get('token');
   const businessDetailsId = searchParams.get('bid');
@@ -131,10 +131,44 @@ export default async function SuccessPage() {
     );
   }
 
-  if (!businessDetails || businessDetails.length === 0) {
+  if (!token || !businessDetails || businessDetails.length === 0) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p className="text-muted-foreground">Loading business details...</p>
+      <div className="min-h-screen flex items-center justify-center p-4">
+        <div className="max-w-md w-full">
+          <div className="text-center mb-8">
+            <h1 className="text-3xl font-bold mb-2">Access Your Report</h1>
+            <p className="text-muted-foreground">
+              {error === 'Token expired' 
+                ? 'Your access link has expired. Enter your email to receive a new link.'
+                : 'Enter your email to receive a magic link to access your report.'}
+            </p>
+          </div>
+
+          <form onSubmit={handleRequestNewLink} className="space-y-4">
+            <div>
+              <Label htmlFor="email">Email Address</Label>
+              <Input
+                id="email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email address"
+                required
+              />
+            </div>
+
+            {error && <p className="text-sm text-red-500">{error}</p>}
+            {emailSent && (
+              <p className="text-sm text-green-600">
+                Check your email for the magic link to access your report.
+              </p>
+            )}
+
+            <Button type="submit" className="w-full">
+              Send Magic Link
+            </Button>
+          </form>
+        </div>
       </div>
     );
   }
