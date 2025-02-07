@@ -118,6 +118,7 @@ export async function POST(request: Request) {
       payment_method_types: ['card'],
       billing_address_collection: 'required',
       customer_email: data.email,
+      allow_promotion_codes: true,
     });
 
     if (!session.url) {
