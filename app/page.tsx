@@ -973,17 +973,19 @@ export default function Home() {
                 </p>
                 
                 <Card className="p-8 mb-8 bg-white/50 backdrop-blur-sm border-2 border-[#57ad0b]/20">
-                  <div className="flex flex-col md:flex-row gap-6 items-center text-left">
-                    <div className="w-24 h-24 rounded-full overflow-hidden bg-[#57ad0b]/10 flex-none ring-4 ring-[#57ad0b]/20">
-                      <img 
-                        src="/images/businesses/spas.jpg" 
-                        alt="Winnie from Tao Day Spa" 
-                        className="w-full h-full object-cover"
-                      />
+                  <div className="flex flex-col md:flex-row gap-8 items-start text-left">
+                    <div className="w-full md:w-48 flex-none">
+                      <div className="relative w-full max-w-[200px] mx-auto md:mx-0">
+                        <img 
+                          src="/images/tao-logo.png" 
+                          alt="Tao Day Spa Logo" 
+                          className="w-full h-auto object-contain"
+                        />
+                      </div>
                     </div>
                     <div className="flex-1">
                       <blockquote className="text-lg mb-4 italic">
-                        "The report opened my eyes to several grant opportunities I hadn't seen before—even though I'd been using another service. It was clear, well-organized, and saved me hours of research. I'm much more confident now about finding funding for my day spa.""
+                        "The report opened my eyes to several grant opportunities I hadn't seen before—even though I'd been using another service. It was clear, well-organized, and saved me hours of research. I'm much more informed now about finding funding for my day spa.""
                       </blockquote>
                       <div>
                         <p className="font-semibold">Winnie Cheung-Pozo</p>
