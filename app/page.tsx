@@ -569,7 +569,7 @@ function DialogModalContent({ setParentOpen }: DialogModalContentProps) {
             <div className="space-y-4 mb-8">
               <div className="flex items-center gap-3 text-sm">
                 <CheckCircle className="text-primary w-5 h-5 shrink-0" />
-                <span>Comprehensive list of grants, loans, and tax credits matched to your business</span>
+                <span>Comprehensive list of 30 grants, loans, and tax credits matched to your business</span>
               </div>
               <div className="flex items-center gap-3 text-sm">
                 <CheckCircle className="text-primary w-5 h-5 shrink-0" />
@@ -641,7 +641,7 @@ export default function Home() {
   const faqs = [
     {
       question: 'How detailed is the grant report?',
-      answer: 'Our comprehensive report includes detailed grant descriptions, eligibility criteria, application deadlines, funding amounts, and direct links to apply. We analyze over 500 funding sources across federal, provincial, and private sectors.',
+      answer: 'Our comprehensive report includes 30 funding opportunities with detailed grant descriptions, eligibility criteria, application deadlines, funding amounts, and direct links to apply. We analyze over 500 funding sources across federal, provincial, and private sectors to find the best matches for your business.',
     },
     {
       question: 'What information do you need from my business?',
@@ -932,7 +932,7 @@ export default function Home() {
                   <div className="bg-white/50 backdrop-blur-sm rounded-2xl p-8">
                     <ul className="space-y-4">
                       {[
-                        'Personalized list of funding opportunities tailored to your business',
+                        'Personalized list of 30 funding opportunities tailored to your business',
                         'Grants, tax rebates, and subsidies categorized for easy browsing',
                         'Continuously updated with the latest available programs',
                         'Direct links to official sources for accurate details',
@@ -1203,7 +1203,7 @@ export default function Home() {
 
                 <div className="space-y-4 mb-8">
                   {[
-                    'Personalized list of funding opportunities tailored to your business',
+                    'Personalized list of 30 funding opportunities tailored to your business',
                     'Grants, tax rebates, and subsidies categorized for easy browsing',
                     'Continuously updated with the latest available programs',
                     'Direct links to official sources for accurate details',
