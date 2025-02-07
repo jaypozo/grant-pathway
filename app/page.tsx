@@ -780,7 +780,7 @@ export default function Home() {
             <div className="flex flex-col items-center text-center">
               <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 mb-8">
                 <Sparkles className="w-4 h-4" />
-                <span className="text-sm font-medium">Built by a Small Business Owner for Small Business Owners</span>
+                <span className="text-sm font-medium">Built by a Small Business Owner<br className="md:hidden" /> for Small Business Owners</span>
               </div>
               
               <h1 className="text-4xl md:text-5xl font-bold mb-6">
