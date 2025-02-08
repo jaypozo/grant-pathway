@@ -29,6 +29,7 @@ export async function sendTemplateEmail({ to, subject, template, variables }: Se
       subject,
       template,
       'h:X-Mailgun-Variables': JSON.stringify(variables),
+      'h:Reply-To': 'hello@mg.grantpathway.com',
     });
     
     return { success: true, id: msg.id };
