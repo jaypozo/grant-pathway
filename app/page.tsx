@@ -784,18 +784,18 @@ export default function Home() {
 
       {/* Add padding to account for fixed header */}
       <div className="pt-16">
-        {/* Hero Section */}
-        <section className="relative overflow-hidden bg-gradient-to-b from-primary/5 via-primary/10 to-background py-20 px-4">
-          <div className="absolute inset-0 bg-grid-primary/5 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
-          <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 via-transparent to-transparent" />
-          
-          <div className="relative max-w-6xl mx-auto">
-            <div className="flex flex-col items-center text-center">
-              <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 mb-8">
-                <Sparkles className="w-4 h-4" />
+      {/* Hero Section */}
+      <section className="relative overflow-hidden bg-gradient-to-b from-primary/5 via-primary/10 to-background py-20 px-4">
+        <div className="absolute inset-0 bg-grid-primary/5 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
+        <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 via-transparent to-transparent" />
+        
+        <div className="relative max-w-6xl mx-auto">
+          <div className="flex flex-col items-center text-center">
+            <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 mb-8">
+              <Sparkles className="w-4 h-4" />
                 <span className="text-sm font-medium">Built by a Small Business Owner<br className="md:hidden" /> for Small Business Owners</span>
-              </div>
-              
+            </div>
+            
               <h1 className="text-4xl md:text-5xl font-bold mb-6">
                 <span>
                 Built For My Own Business <br />
@@ -805,41 +805,41 @@ export default function Home() {
                     Now It's Yours
                     <div className="absolute -bottom-2 left-0 right-0 h-3 bg-[#57ad0b] -skew-x-6 transform" />
                   </span>
-                </div>
-              </h1>
-
-              <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl">
-                Get a personalized, deeply researched report of funding opportunities—grants, loans, and tax credits—tailored to your Canadian business.
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-4 items-center justify-center mb-12">
-                <Link href="/business-details">
-                  <Button size="lg" className="text-lg px-8 h-14 rounded-full">
-                    Get Your Grant Report <ArrowRight className="ml-2" />
-                  </Button>
-                </Link>
-                <p className="flex items-center gap-2 text-muted-foreground">
-                  <LightbulbIcon className="w-5 h-5 text-primary" />
-                  <span>One-time fee of $100 CAD</span>
-                </p>
               </div>
+            </h1>
 
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto text-center">
-                {[
+            <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl">
+                Get a personalized, deeply researched report of funding opportunities—grants, loans, and tax credits—tailored to your Canadian business.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 items-center justify-center mb-12">
+                <Link href="/business-details">
+              <Button size="lg" className="text-lg px-8 h-14 rounded-full">
+                Get Your Grant Report <ArrowRight className="ml-2" />
+              </Button>
+                </Link>
+              <p className="flex items-center gap-2 text-muted-foreground">
+                <LightbulbIcon className="w-5 h-5 text-primary" />
+                <span>One-time fee of $100 CAD</span>
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto text-center">
+              {[
                   { label: 'All Provinces & Territories', value: '13 Regions' },
                   { label: 'Personalized Report Delivery', value: '48 hrs' },
                   { label: 'One-time Fee', value: '$100' },
                   { label: 'Hours Saved', value: 'Countless' },
-                ].map((stat, index) => (
-                  <div key={index} className="space-y-2">
-                    <div className="text-3xl font-bold text-primary">{stat.value}</div>
-                    <div className="text-sm text-muted-foreground">{stat.label}</div>
-                  </div>
-                ))}
-              </div>
+              ].map((stat, index) => (
+                <div key={index} className="space-y-2">
+                  <div className="text-3xl font-bold text-primary">{stat.value}</div>
+                  <div className="text-sm text-muted-foreground">{stat.label}</div>
+                </div>
+              ))}
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
         {/* Meet Jay Section */}
         <section className="py-16 bg-background border-t border-b">
@@ -899,41 +899,41 @@ export default function Home() {
               <div className=" flex-none" aria-hidden="true" />
             </div>
           </Marquee>
-        </section>
+      </section>
 
-        {/* How It Works */}
-        <section className="py-20 px-4 bg-background">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">How It Works</h2>
-            <div className="grid md:grid-cols-3 gap-8">
-              <Card className="p-6 text-center">
+      {/* How It Works */}
+      <section className="py-20 px-4 bg-background">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">How It Works</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            <Card className="p-6 text-center">
                 <ClipboardList className="w-12 h-12 mx-auto mb-4 text-primary" />
                 <h3 className="text-xl font-semibold mb-2">1. Provide Basic Details</h3>
-                <p className="text-muted-foreground">
+              <p className="text-muted-foreground">
                   Tell me about your business—location, industry, and a few specifics.
-                </p>
-              </Card>
-              <Card className="p-6 text-center">
+              </p>
+            </Card>
+            <Card className="p-6 text-center">
                 <Bot className="w-12 h-12 mx-auto mb-4 text-primary" />
                 <h3 className="text-xl font-semibold mb-2">2. AI-Powered Analysis</h3>
-                <p className="text-muted-foreground">
+              <p className="text-muted-foreground">
                   My AI system finds the latest opportunities in real-time, discovering funding perfectly matched to your unique business.
-                </p>
-              </Card>
-              <Card className="p-6 text-center">
+              </p>
+            </Card>
+            <Card className="p-6 text-center">
                 <FileText className="w-12 h-12 mx-auto mb-4 text-primary" />
                 <h3 className="text-xl font-semibold mb-2">3. Receive Your Report</h3>
-                <p className="text-muted-foreground">
+              <p className="text-muted-foreground">
                   Within 48 hours, you'll have a personalized list of viable grants and loans.
-                </p>
-              </Card>
-            </div>
+              </p>
+            </Card>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Sample Report */}
+      {/* Sample Report */}
         <section className="py-20 px-4 bg-[#57ad0b]/10">
-          <div className="max-w-6xl mx-auto">
+        <div className="max-w-6xl mx-auto">
             <div className="relative">
               <div className="absolute inset-0 bg-grid-black/5 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
               <div className="relative">
@@ -941,30 +941,30 @@ export default function Home() {
                 <p className="text-xl text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
                   A comprehensive grant report tailored to your business needs
                 </p>
-                <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
                   <div className="bg-white/50 backdrop-blur-sm rounded-2xl p-8">
-                    <ul className="space-y-4">
-                      {[
+              <ul className="space-y-4">
+                {[
                         'Personalized list of 30 funding opportunities tailored to your business',
                         'Grants, tax rebates, and subsidies categorized for easy browsing',
                         'Continuously updated with the latest available programs',
                         'Direct links to official sources for accurate details',
                         'Highlights top programs that best fit your business',
                         'Delivered within 48 hours'
-                      ].map((item, index) => (
-                        <li key={index} className="flex items-center gap-3">
+                ].map((item, index) => (
+                  <li key={index} className="flex items-center gap-3">
                           <div className="bg-[#57ad0b] rounded-full p-1">
                             <CheckCircle className="text-white w-4 h-4 shrink-0" />
                           </div>
                           <span className="font-medium">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
                   <div className="bg-white rounded-2xl shadow-xl p-6 rotate-1 hover:rotate-0 transition-transform duration-300">
-                    <img
-                      src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=600&q=80"
-                      alt="Sample Report"
+              <img
+                src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=600&q=80"
+                alt="Sample Report"
                       className="rounded-lg w-full shadow-lg"
                     />
                   </div>
@@ -1023,14 +1023,14 @@ export default function Home() {
                     <DialogModalContent setParentOpen={setOpen} />
                   </DialogContent>
                 </Dialog>
-              </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
         {/* Funding Landscape Section */}
-        <section className="py-20 px-4 bg-background">
-          <div className="max-w-6xl mx-auto">
+      <section className="py-20 px-4 bg-background">
+        <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">Billions in Funding for Canadian Businesses</h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -1131,8 +1131,8 @@ export default function Home() {
                         <h4 className="font-medium mb-1">Sustainability & Clean Energy</h4>
                         <p className="text-muted-foreground">Green initiatives remain a top funding priority.</p>
                       </div>
-                    </div>
-                  </Card>
+                </div>
+              </Card>
                   <Card className="p-4">
                     <div className="flex items-start gap-4">
                       <div className="bg-primary/10 p-2 rounded-lg">
@@ -1141,9 +1141,9 @@ export default function Home() {
                       <div>
                         <h4 className="font-medium mb-1">Other SMEs</h4>
                         <p className="text-muted-foreground">Many small businesses find grants when they match government goals.</p>
-                      </div>
-                    </div>
-                  </Card>
+          </div>
+        </div>
+          </Card>
                 </div>
               </div>
             </div>
@@ -1175,26 +1175,26 @@ export default function Home() {
                 </Button>
               </Link>
             </div>
-          </div>
-        </section>
+        </div>
+      </section>
 
-        
-        {/* FAQ */}
-        <section className="py-20 px-4 bg-background">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-              Frequently Asked Questions
-            </h2>
-            <Accordion type="single" collapsible className="w-full">
-              {faqs.map((faq, index) => (
-                <AccordionItem key={index} value={`item-${index}`}>
-                  <AccordionTrigger>{faq.question}</AccordionTrigger>
-                  <AccordionContent>{faq.answer}</AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </div>
-        </section>
+
+      {/* FAQ */}
+      <section className="py-20 px-4 bg-background">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+            Frequently Asked Questions
+          </h2>
+          <Accordion type="single" collapsible className="w-full">
+            {faqs.map((faq, index) => (
+              <AccordionItem key={index} value={`item-${index}`}>
+                <AccordionTrigger>{faq.question}</AccordionTrigger>
+                <AccordionContent>{faq.answer}</AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+      </section>
 
         {/* New Pricing Section */}
         <section id="pricing" className="py-20 px-4 bg-primary/5">
@@ -1241,52 +1241,52 @@ export default function Home() {
                 </Link>
               </Card>
             </div>
-          </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Footer */}
-        <footer className="bg-primary text-primary-foreground py-12 px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid md:grid-cols-4 gap-8">
-              <div>
-                <h3 className="font-bold text-lg mb-4">Grant Pathway</h3>
-                <p className="text-primary-foreground/80">
-                  Helping Canadian businesses access the funding they deserve
-                </p>
-              </div>
-              <div>
-                <h4 className="font-semibold mb-4">Contact</h4>
+      {/* Footer */}
+      <footer className="bg-primary text-primary-foreground py-12 px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-4 gap-8">
+            <div>
+              <h3 className="font-bold text-lg mb-4">Grant Pathway</h3>
+              <p className="text-primary-foreground/80">
+                Helping Canadian businesses access the funding they deserve
+              </p>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Contact</h4>
                 <p className="text-primary-foreground/80">hello@grantpathway.com</p>
-              </div>
-              <div>
-                <h4 className="font-semibold mb-4">Follow Us</h4>
-                <div className="space-y-2">
-                  <a href="#" className="block text-primary-foreground/80 hover:text-primary-foreground">
-                    LinkedIn
-                  </a>
-                  <a href="#" className="block text-primary-foreground/80 hover:text-primary-foreground">
-                    Twitter
-                  </a>
-                </div>
-              </div>
-              <div>
-                <h4 className="font-semibold mb-4">Legal</h4>
-                <div className="space-y-2">
-                  <a href="#" className="block text-primary-foreground/80 hover:text-primary-foreground">
-                    Privacy Policy
-                  </a>
-                  <a href="#" className="block text-primary-foreground/80 hover:text-primary-foreground">
-                    Terms of Service
-                  </a>
-                </div>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Follow Us</h4>
+              <div className="space-y-2">
+                <a href="#" className="block text-primary-foreground/80 hover:text-primary-foreground">
+                  LinkedIn
+                </a>
+                <a href="#" className="block text-primary-foreground/80 hover:text-primary-foreground">
+                  Twitter
+                </a>
               </div>
             </div>
-            <div className="mt-8 pt-8 border-t border-primary-foreground/20 text-center text-primary-foreground/60">
+            <div>
+              <h4 className="font-semibold mb-4">Legal</h4>
+              <div className="space-y-2">
+                <a href="#" className="block text-primary-foreground/80 hover:text-primary-foreground">
+                  Privacy Policy
+                </a>
+                <a href="#" className="block text-primary-foreground/80 hover:text-primary-foreground">
+                  Terms of Service
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className="mt-8 pt-8 border-t border-primary-foreground/20 text-center text-primary-foreground/60">
               <p>&copy; {new Date().getFullYear()} Grant Pathway. All rights reserved.</p>
             </div>
           </div>
         </footer>
-      </div>
+        </div>
     </div>
   );
 }

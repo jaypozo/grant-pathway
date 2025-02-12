@@ -1,6 +1,6 @@
 'use client';
 
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -51,6 +51,7 @@ function getDeliveryDateTime(submissionDate: string) {
 }
 
 export default function SuccessPage() {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const token = searchParams.get('token');
   const businessDetailsId = searchParams.get('bid');
@@ -86,6 +87,14 @@ export default function SuccessPage() {
       } else {
         setUser(data.user);
         setBusinessDetails(data.businessDetails);
+        
+        // Check if the report is ready and redirect if it is
+        const details = data.businessDetails[0];
+        if (details && details.status === 'report_ready') {
+          router.push(`/report?token=${token}&bid=${businessDetailsId}`);
+          return;
+        }
+        
         setError(null);
       }
     } catch (err) {

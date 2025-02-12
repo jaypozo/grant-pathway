@@ -36,16 +36,48 @@ export async function GET(request: Request) {
           _id: new ObjectId(businessDetailsId),
           userId: user._id 
         })
+        .project({
+          businessName: 1,
+          city: 1,
+          province: 1,
+          businessType: 1,
+          industry: 1,
+          otherIndustry: 1,
+          businessStage: 1,
+          startDate: 1,
+          gender: 1,
+          ageRange: 1,
+          underrepresentedGroups: 1,
+          otherUnderrepresentedGroup: 1,
+          status: 1,
+          createdAt: 1
+        })
         .toArray();
     } else {
       // Get all business details for this user
       businessDetails = await db.collection("businessDetails")
         .find({ userId: user._id })
+        .project({
+          businessName: 1,
+          city: 1,
+          province: 1,
+          businessType: 1,
+          industry: 1,
+          otherIndustry: 1,
+          businessStage: 1,
+          startDate: 1,
+          gender: 1,
+          ageRange: 1,
+          underrepresentedGroups: 1,
+          otherUnderrepresentedGroup: 1,
+          status: 1,
+          createdAt: 1
+        })
         .sort({ createdAt: -1 }) // Most recent first
         .toArray();
     }
 
-    // Remove sensitive fields
+    // Remove sensitive fields from user
     const safeUser = {
       email: user.email,
       createdAt: user.createdAt
